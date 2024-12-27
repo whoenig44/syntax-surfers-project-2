@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import smanticLogo from './assets/smanticsurferimage.jpg'
 import './App.css'
 
 function App() {
@@ -9,11 +8,8 @@ function App() {
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
+        <a href="https://github.com/whoenig44/syntax-surfers-project-2" target="_blank">
+          <img src={smanticLogo} className="logo" alt="Semantic Surfers Logo" />
         </a>
       </div>
       <h1>Welcome to the Health Monitoring Application!!!</h1>
@@ -26,7 +22,7 @@ function App() {
         </p>
       </div>
       <p className="read-the-docs">
-        Click on the Vite and React logos to learn more about the React framework and Vite Web Bundler
+        Click on the Semantic Surfers Logo above to go to the GitHub Repository for this project
       </p>
     </>
   )
