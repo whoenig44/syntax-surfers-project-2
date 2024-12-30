@@ -1,14 +1,16 @@
-import { useState } from 'react'
-import smanticLogo from './assets/smanticsurferimage.jpg'
-import './App.css'
+import { useState } from 'react';
+import smanticLogo from './assets/smanticsurferimage.jpg';
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+// Explicitly type the component as a React Functional Component (FC)
+const App: React.FC = () => {
+  // Typing useState with 'number' to indicate count will always be a number
+  const [count, setCount] = useState<number>(0);
 
   return (
     <>
       <div>
-        <a href="https://github.com/whoenig44/syntax-surfers-project-2" target="_blank">
+        <a href="https://github.com/whoenig44/syntax-surfers-project-2" target="_blank" rel="noopener noreferrer">
           <img src={smanticLogo} className="logo" alt="Semantic Surfers Logo" />
         </a>
       </div>
@@ -25,7 +27,7 @@ function App() {
         Click on the Semantic Surfers Logo above to go to the GitHub Repository for this project
       </p>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
