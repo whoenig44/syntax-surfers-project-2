@@ -1,4 +1,7 @@
-const API_URL = 'https://api.example.com';
+
+import ApexCharts from 'apexcharts'
+
+const API_URL = 'https://cdn.jsdelivr.net/npm/apexcharts';
 
 export const fetchData = async () => {
     try {
