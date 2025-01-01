@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import ChartComponent from './Component/ChartComponent';
 
 const App: FC = () => {
@@ -11,18 +11,18 @@ const App: FC = () => {
       }
     ],
     categories: ['1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999']
-    };
-
-    return (
-      <div className="app">
-        <ChartComponent
-          title={chartData.title}
-          series={chartData.series}
-          categories={chartData.categories}
-        />  
-      </div>
-    );
   };
+
+  return (
+    <div className="app">
+      <ChartComponent
+        title={chartData.title}
+        series={chartData.series}
+        categories={chartData.categories}
+      />  
+    </div>
+  );
+};
 
   export default App;
 

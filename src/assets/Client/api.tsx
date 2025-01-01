@@ -1,6 +1,6 @@
 
-const API_URL = 'https://cdn.jsdelivr.net/npm/apexcharts';
-//https://cdn.jsdelivr.net/npm/react-apexcharts
+const API_URL = 'https://cdn.jsdelivr.net/npm/react-apexcharts';
+//cdn.jsdelivr.net/npm/react-apexcharts
 
 export const fetchData = async () => {
     try {
