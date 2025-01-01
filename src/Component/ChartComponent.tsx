@@ -1,5 +1,4 @@
 //Importing the required libraries
-import React, {FC} from 'react';
 import Chart from 'react-apexcharts';
 
 //Creating the ChartComponent
@@ -9,7 +8,7 @@ interface ChartProps {
     categories: string [];
 }
 
-const ChartComponent: FC<ChartProps> =({title, series, categories}) => {
+const ChartComponent: React.FC<ChartProps> =({title, series, categories}) => {
         const options ={
             chart: {
                 id: 'apexchart-example',
