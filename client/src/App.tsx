@@ -1,30 +1,37 @@
-import React, { FC } from 'react';
-import ChartComponent from './Component/ChartComponent';
+import HealthIsWealth from "./components/HealthIsWealth";
 
-const App: FC = () => {
-  const chartData = {
-    title: 'User Defined Chart',
-    series: [
-      {
-        name: 'series-1',
-        data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
-      }
-    ],
-    categories: ['1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999']
-  };
+const App = () => <HealthIsWealth />;
 
-  return (
-    <div className="app">
-      <ChartComponent
-        title={chartData.title}
-        series={chartData.series}
-        categories={chartData.categories}
-      />  
-    </div>
-  );
-};
+export default App;
 
-  export default App;
+
+// import React, { FC } from 'react';
+// import ChartComponent from './Component/ChartComponent';
+
+// const App: FC = () => {
+//   const chartData = {
+//     title: 'User Defined Chart',
+//     series: [
+//       {
+//         name: 'series-1',
+//         data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
+//       }
+//     ],
+//     categories: ['1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999']
+//   };
+
+//   return (
+//     <div className="app">
+//       <ChartComponent
+//         title={chartData.title}
+//         series={chartData.series}
+//         categories={chartData.categories}
+//       />  
+//     </div>
+//   );
+// };
+
+//   export default App;
 
 
 

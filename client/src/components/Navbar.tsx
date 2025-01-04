@@ -1,46 +1,68 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import auth from '../utils/auth';
+// import { Link } from 'react-router-dom';
+// import auth from '../utils/auth';
+import './Navbar.css';
 
-const Navbar = () => {
-  // State to track the login status
-  const [loginCheck, setLoginCheck] = useState(false);
+interface MenuItem {
+  label: string;
+  subMenu?: MenuItem[];
+  onClick?: () => void;
+}
 
-  // Function to check if the user is logged in using auth.loggedIn() method
-  const checkLogin = () => {
-    if (auth.loggedIn()) {
-      setLoginCheck(true);  // Set loginCheck to true if user is logged in
-    }
+const Navbar: React.FC = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const toggleLogin = () => {
+    setIsLoggedIn((prev) => !prev);
   };
 
-  // useEffect hook to run checkLogin() on component mount and when loginCheck state changes
-  useEffect(() => {
-    checkLogin();  // Call checkLogin() function to update loginCheck state
-  }, [loginCheck]);  // Dependency array ensures useEffect runs when loginCheck changes
+  const menuItems: MenuItem[] = [
+    { label: 'Home', onClick: () => console.log('Navigating to Home') },
+    {
+      label: isLoggedIn ? 'Log Out' : 'Log In',
+      onClick: toggleLogin,
+    },
+    {
+      label: 'Tracking Data',
+      subMenu: [
+        { label: 'Symptoms to Track', onClick: () => console.log('Navigating to Symptoms to Track') },
+        { label: 'View Graphs', onClick: () => console.log('Navigating to View Graphs') },
+      ],
+    },
+    {
+      label: 'Diary',
+      subMenu: [
+        { label: 'Add an Entry', onClick: () => console.log('Navigating to Add an Entry') },
+        { label: 'View Diary Entries', onClick: () => console.log('Navigating to View Diary Entries') },
+      ],
+    },
+    {
+      label: 'About',
+      subMenu: [
+        { label: 'About This Program', onClick: () => console.log('Navigating to About This Program') },
+        { label: 'Contact Us', onClick: () => console.log('Navigating to Contact Us') },
+      ],
+    },
+  ];
+
+  const renderMenu = (items: MenuItem[]) => {
+    return (
+      <ul className="menu">
+        {items.map((item, index) => (
+          <li key={index} className="menu-item">
+            <span onClick={item.onClick}>{item.label}</span>
+            {item.subMenu && <ul className="sub-menu">{renderMenu(item.subMenu)}</ul>}
+          </li>
+        ))}
+      </ul>
+    );
+  };
 
   return (
-    <div className="display-flex justify-space-between align-center py-2 px-5 mint-green">
-      <h1>
-        Authentication Review
-      </h1>
-      <div>
-        {
-          // Conditional rendering based on loginCheck state
-          !loginCheck ? (
-            // Render login button if user is not logged in
-            <button className="btn" type='button'>
-              <Link to='/login'>Login</Link>
-            </button>
-          ) : (
-            // Render logout button if user is logged in
-            <button className="btn" type='button' onClick={() => {
-              auth.logout();  // Call logout() method from auth utility on button click
-            }}>Logout</button>
-          )
-        }
-      </div>
-    </div>
-  )
-}
+    <nav className="navigation-bar">
+      {renderMenu(menuItems)}
+    </nav>
+  );
+};
 
 export default Navbar;
