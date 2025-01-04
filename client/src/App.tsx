@@ -1,8 +1,8 @@
 import React, { useState, use Effect } from 'react';
 import ChartComponent from './components/ChartComponent';
-import InputForm from './Component/InputForm'; //Need to update this path 
+import HealthIsWealth from './components/HealthIsWealth'; //Need to update this path 
 
-interface SEriesData {
+interface SeriesData {
   name: string;
   data: number[];
 }

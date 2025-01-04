@@ -1,6 +1,6 @@
 //Importing the required libraries
 import Chart from 'react-apexcharts';
-
+import InputForm from './components/InputForm.tsx'; //Need to update this path
 //Creating the ChartComponent
 interface ChartProps {
     title: string;
