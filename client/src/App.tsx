@@ -53,8 +53,8 @@ const App: FC = () => {
       type="line" //you can change this to whatever type you've got defined
       type={chartData.type}  
       title={chartData.title}
-        series={chartData.series}
-        categories={chartData.categories}
+      series={chartData.series}
+      categories={chartData.categories}
         /> 
       )} 
     </div>
