@@ -1,5 +1,5 @@
 import React, { useState, use Effect } from 'react';
-import ChartComponent from './Component/ChartComponent';
+import ChartComponent from './components/ChartComponent';
 import InputForm from './Component/InputForm'; //Need to update this path 
 
 interface SEriesData {
