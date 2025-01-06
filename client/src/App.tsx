@@ -1,8 +1,10 @@
-import React, { useState, use Effect } from 'react';
-import ChartComponent from './components/ChartComponent';
-import HealthIsWealth from './components/HealthIsWealth'; //Need to update this path 
+// import React, { useState, use Effect } from 'react';
+// import ChartComponent from './components/ChartComponent';
+// import HealthIsWealth from './components/HealthIsWealth'; //Need to update this path 
 
-
+import HealthIsWealth from "./components/HealthIsWealth";
+const App = () => <HealthIsWealth />;
+export default App;
 
 
 // import React, { FC } from 'react';
