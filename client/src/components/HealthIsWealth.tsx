@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Navbar from './Navbar';
+// import Navbar from './Navbar';
 import Home from './pages/Home';
 import AddNote from './pages/AddNote';
 // import Footer from './Footer';
