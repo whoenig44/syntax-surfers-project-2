@@ -11,7 +11,7 @@ interface NavTabsProps {
 }
 
 
-const NavTabs: React.FC<NavTabsProps> = ({ currentPage, handlePageChange }) => {
+const Navbar: React.FC<NavTabsProps> = ({ currentPage, handlePageChange }) => {
   return (
     <ul className="nav nav-tabs">
       {/* Home */}
@@ -141,5 +141,4 @@ const NavTabs: React.FC<NavTabsProps> = ({ currentPage, handlePageChange }) => {
   );
 };
 
-export default NavTabs;
-
+export default Navbar;

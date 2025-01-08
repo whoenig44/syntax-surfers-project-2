@@ -1,6 +1,12 @@
 // import React, { useState, use Effect } from 'react';
 // import ChartComponent from './components/ChartComponent';
 // import HealthIsWealth from './components/HealthIsWealth'; //Need to update this path 
+// import HealthIsWealth from "./components/HealthIsWealth";
+// import React, { useState, useEffect } from 'react';
+// import ChartComponent from './components/ChartComponent';
+// import HealthIsWealth from './components/HealthIsWealth'; //Need to update this path 
+
+import HealthIsWealth from "./components/HealthIsWealth";
 
 // import HealthIsWealth from "./components/HealthIsWealth";
 // const App = () => <HealthIsWealth />;
