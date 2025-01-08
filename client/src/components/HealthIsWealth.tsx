@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // import Navbar from './Navbar';
-import Home from './pages/Home';
+// import Home from './pages/Home';
 import AddDataEntry from './pages/AddDataEntry';
 // import Footer from './Footer';
 import Header from './Header';
