@@ -16,7 +16,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 export default function ReactPortfolio(): JSX.Element {
   
   const [currentPage, setCurrentPage] = useState<'Home' | 'AddDataEntry' | 'RecordData' | 'ViewResultsDashboard' |
-  'ViewIndividualResults' | 'AddNewNotes' | 'ViewNotes' | 'About'>('AddNewNotes');
+  'ViewIndividualResults' | 'AddNewNotes' | 'ViewNotes' | 'About'>('Home');
 
   const renderPage = (): JSX.Element | null => {
     if (currentPage === 'Home') {
