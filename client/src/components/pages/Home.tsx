@@ -4,12 +4,13 @@ import type { UserData } from "../../interfaces/UserData";
 import ErrorPage from "./ErrorPage";
 import UserList from '../Users';
 import auth from '../../utils/auth';
+import "./home.css"
 
 const Home = () => {
 
     const [users, setUsers] = useState<UserData[]>([]);
     const [error, setError] = useState(false);
-    const [loginCheck, setLoginCheck] = useState(false);
+    const [loginCheck, setLoginCheck] = useState(true);
 
     useEffect(() => {
         if (loginCheck) {

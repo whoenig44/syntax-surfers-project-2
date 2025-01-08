@@ -1,9 +1,27 @@
-import React, { useState, use Effect } from 'react';
-import ChartComponent from './components/ChartComponent';
-import HealthIsWealth from './components/HealthIsWealth'; //Need to update this path 
+// import React, { useState, useEffect } from 'react';
+// import ChartComponent from './components/ChartComponent';
+// import HealthIsWealth from './components/HealthIsWealth'; //Need to update this path 
+import Header from './components/Header';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './components/pages/Home';
+import Login from './components/pages/Login';
+import Footer from './components/Footer';
+import "./App.css"
 
+const App = () => {
+    return (
+        <BrowserRouter>
+            <Header />
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+            </Routes>
+            <Footer/>
+        </BrowserRouter>
+    )
+}
 
-
+export default App;
 
 // import React, { FC } from 'react';
 // import ChartComponent from './Component/ChartComponent';
@@ -26,7 +44,7 @@ import HealthIsWealth from './components/HealthIsWealth'; //Need to update this 
 //         title={chartData.title}
 //         series={chartData.series}
 //         categories={chartData.categories}
-//       />  
+//       />
 //     </div>
 //   );
 // };
@@ -71,5 +89,6 @@ import HealthIsWealth from './components/HealthIsWealth'; //Need to update this 
 //     </>
 //   );
 // };
+
 
 // export default App;

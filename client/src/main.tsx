@@ -1,6 +1,5 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import './index.css';
 import App from './App'; // Automatically resolves to App.tsx
 
 //Added from Activity Example

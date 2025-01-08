@@ -2,6 +2,7 @@ import React from 'react';
 
 import type { UserData } from "../interfaces/UserData";
 import auth from '../utils/auth';
+import banner from "../assets/hwealthbanner.png";
 
 // Define the props for the component
 interface UserListProps {
@@ -10,9 +11,9 @@ interface UserListProps {
 
 const UserList: React.FC<UserListProps> = ({ users }) => {
     return (
-        <>
+        <section className='banner' style={{backgroundImage: `url(${banner})`}}>
             <h2 className="pb-5">
-                Check out all your friends!
+                Health Is Wealth!
             </h2>
             {users && users.map((user) => (
                 <div className="row align-center mb-5" key={user.id}>
@@ -24,7 +25,7 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
                     </div>
                 </div>
             ))}
-        </>
+        </section>
     );
 };
 
