@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // import Navbar from './Navbar';
-// import Home from './pages/Home';
+import Home from './pages/Home';
 import AddDataEntry from './pages/AddDataEntry';
 // import Footer from './Footer';
 import Header from './Header';
@@ -13,10 +13,11 @@ import About from './pages/About';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
+
 export default function ReactPortfolio(): JSX.Element {
   
   const [currentPage, setCurrentPage] = useState<'Home' | 'AddDataEntry' | 'RecordData' | 'ViewResultsDashboard' |
-  'ViewIndividualResults' | 'AddNewNotes' | 'ViewNotes' | 'About'>('AddNewNotes');
+  'ViewIndividualResults' | 'AddNewNotes' | 'ViewNotes' | 'About'>('Home');
 
   const renderPage = (): JSX.Element | null => {
     if (currentPage === 'Home') {
