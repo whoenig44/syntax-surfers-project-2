@@ -35,7 +35,7 @@ const AddNewNotes: React.FC = () => {
 
   return (
     <div className="App">
-      <h1>Submit Your Details</h1>
+      <h1>Create a new note</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="title">Title:</label>
@@ -60,7 +60,7 @@ const AddNewNotes: React.FC = () => {
           />
         </div>
         <div>
-          <label htmlFor="message">Message:</label>
+          <label htmlFor="message">Note:</label>
           <textarea
             id="message"
             name="message"
