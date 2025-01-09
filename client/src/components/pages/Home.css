@@ -4,8 +4,10 @@
     background-position: center;
     background-size: cover;
     padding: 20px 0;
+    
 }
 
-.banner h2 {
+.banner h1 {
     text-align: center;
+    font-size: 80px;
 }

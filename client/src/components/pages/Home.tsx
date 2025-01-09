@@ -6,9 +6,9 @@ import "./Home.css";
 export default function Home() {
     return (
         <section className='banner' style={{backgroundImage: `url(${banner})`}}>
-            <h2 className="pb-5">
+            <h1 className="pb-5">
                 Health Is Wealth!
-            </h2>
+            </h1>
             
             
         </section>

@@ -16,13 +16,7 @@ const Footer: React.FC = () => {
                             <li>Shannon Taylor</li>
                         </ul>
                     </div>
-                    <div className="column">
-                        <h3>Contact us</h3>
-                        <ul>
-                            <li><a href="mailto:test@email.com">test@email.com</a></li>
-                            <li><a href="tel:+123456789">+123456789</a></li>
-                        </ul>
-                    </div>
+                    
                     <div className="column">
                         <a href="https://github.com/whoenig44/syntax-surfers-project-2/tree/landing-page">
                         <img src={logo} alt="Semantic Surfer" />
