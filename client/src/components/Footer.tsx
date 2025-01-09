@@ -1,4 +1,5 @@
 import "./footer.css";
+import "../assets/smanticsurferimage.jpg"
 
 const Footer: React.FC = () => {
 
@@ -23,11 +24,7 @@ const Footer: React.FC = () => {
                         </ul>
                     </div>
                     <div className="column">
-                        <h3>Privacy</h3>
-                        <ul>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms adn Conditions</a></li>
-                        </ul>
+                        <img src="../assets/smanticsurferimage.jpg" alt="Semantic Surfer" />
                     </div>
                 </div>
                 <div className="copyright">
