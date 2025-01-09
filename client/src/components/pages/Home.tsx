@@ -1,10 +1,17 @@
+import banner from "../../assets/hwealthbanner.png";
+import "./Home.css";
+
+
+
 export default function Home() {
     return (
-      <div>
-        <h1>Home</h1>
-        <p>
-         This will be the the home page.
-        </p>
-      </div>
+        <section className='banner' style={{backgroundImage: `url(${banner})`}}>
+            <h2 className="pb-5">
+                Health Is Wealth!
+            </h2>
+            
+            
+        </section>
     );
-  }
+};
+
