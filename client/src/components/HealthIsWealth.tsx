@@ -2,7 +2,7 @@ import { useState } from 'react';
 // import Navbar from './Navbar';
 import Home from './pages/Home';
 import AddDataEntry from './pages/AddDataEntry';
-// import Footer from './Footer';
+import Footer from './Footer';
 import Header from './Header';
 import RecordData from './pages/RecordData';
 import ViewResultsDashboard from './pages/ViewResultsDashboard';
@@ -62,7 +62,7 @@ export default function ReactPortfolio(): JSX.Element {
     <>
       <Header currentPage={currentPage} handlePageChange={handlePageChange} />
       <main className="my-4">{renderPage()}</main>
-      {/* <Footer className="Footer"></Footer> */}
+      <Footer />
     </>
   );
 }
