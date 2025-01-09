@@ -30,3 +30,7 @@ footer a {
 .copyright {
     text-align: center;
 }
+
+.container img {
+    width: 100px;
+}

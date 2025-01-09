@@ -1,5 +1,5 @@
 import "./footer.css";
-import "../assets/smanticsurferimage.jpg"
+import logo from "../assets/smanticsurferimage.jpg"
 
 const Footer: React.FC = () => {
 
@@ -24,7 +24,9 @@ const Footer: React.FC = () => {
                         </ul>
                     </div>
                     <div className="column">
-                        <img src="../assets/smanticsurferimage.jpg" alt="Semantic Surfer" />
+                        <a href="https://github.com/whoenig44/syntax-surfers-project-2/tree/landing-page">
+                        <img src={logo} alt="Semantic Surfer" />
+                        </a>
                     </div>
                 </div>
                 <div className="copyright">
