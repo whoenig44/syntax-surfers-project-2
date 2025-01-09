@@ -1,7 +1,7 @@
-import React, { FC, useState, useEffect } from 'react';
-import InputForm from './InputForm';
-import ChartComponent from './MultChartComponent';
-import { fetchChartData, ChartData } from './api';
+import { FC, useState, useEffect } from 'react';
+import ChartComponent from './MultiChartComponent';
+import InputForm from './inputForm';
+import { fetchChartData, ChartData } from '../api/fetchChartData'; //Need to update the fetch chart data path to the correct notes file. 
 
 const App: FC = () => {
   const [chartData, setChartData] = useState<ChartData | null>(null);
