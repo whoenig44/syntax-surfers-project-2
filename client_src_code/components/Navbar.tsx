@@ -3,7 +3,7 @@ import React from 'react';
 
 
 
-interface NavTabsProps {
+interface NavbarProps {
   currentPage: 'Home' | 'AddDataEntry' | 'RecordData' | 'ViewResultsDashboard' |
     'ViewIndividualResults' | 'AddNewNotes' | 'ViewNotes' | 'About';
   handlePageChange: (page: 'Home' | 'AddDataEntry' | 'RecordData' | 'ViewResultsDashboard' |
@@ -11,7 +11,7 @@ interface NavTabsProps {
 }
 
 
-const NavTabs: React.FC<NavTabsProps> = ({ currentPage, handlePageChange }) => {
+const Navbar: React.FC<NavbarProps> = ({ currentPage, handlePageChange }) => {
   return (
     <ul className="nav nav-tabs">
       {/* Home */}
@@ -141,5 +141,5 @@ const NavTabs: React.FC<NavTabsProps> = ({ currentPage, handlePageChange }) => {
   );
 };
 
-export default NavTabs;
+export default Navbar;
 
