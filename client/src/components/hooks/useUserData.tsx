@@ -5,7 +5,7 @@ interface DataPoint {
     y: number;
 }
 
-export const useUserData = () => {
+const useUserData = () => {
     const [userData, setUserData] = useState<DataPoint[]>([]);
 
     const addDataPoint = (x: string, y: number) => {
@@ -14,3 +14,5 @@ export const useUserData = () => {
 
     return {userData, addDataPoint};
 };
+
+export default useUserData;
