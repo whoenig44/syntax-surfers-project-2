@@ -27,8 +27,23 @@ const AddNewNotes: React.FC = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    try {
+      const res = await fetch ('http://localhost:3001/api/notes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          "authorization": `Bearer ${localStorage.getItem('id_token')}`
+        },
+        body: JSON.stringify(formData),
+      })
+      const resjson = await res.json();
+      console.log(resjson);
+    } catch (error) {
+      console.log(error);
+      alert ('Could not save note. Please try again.');
+    }
     setCardsData([...cardsData, formData]);
     setFormData({ title: '', date: '', message: '' });
   };

@@ -22,6 +22,7 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
     // Verify the JWT token
     jwt.verify(token, secretKey, (err, user) => {
       if (err) {
+        console.log(err)
         return res.sendStatus(403); // Send forbidden status if the token is invalid
       }
 
