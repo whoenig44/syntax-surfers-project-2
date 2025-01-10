@@ -1,5 +1,6 @@
-import { DataTypes, Sequelize, Model, Optional } from 'sequelize';
-import sequelize from './src/config/connection';
+import { DataTypes,  Model, Optional } from 'sequelize';
+import sequelize from '../config/connection';
+
 
 // Define the attributes for the DataPoint model
 interface DataPointAttributes {

@@ -1,9 +1,9 @@
 import { QueryInterface } from 'sequelize';
-import DataPoint from '../models/datapoint';
 
-export = {
+// Define the seed data
+const seedData = {
   up: async (queryInterface: QueryInterface): Promise<void> => {
-    await DataPoint.bulkCreate([
+    await queryInterface.bulkInsert('data_points', [
       {
         x: new Date('2023-01-01T00:00:00Z'),
         y: 10,
@@ -39,6 +39,8 @@ export = {
   },
 
   down: async (queryInterface: QueryInterface): Promise<void> => {
-    await DataPoint.destroy({ where: {}, truncate: true });
+    await queryInterface.bulkDelete('data_points', {}, {});
   }
 };
+
+export default seedData;
