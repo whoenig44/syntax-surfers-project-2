@@ -20,7 +20,7 @@ const ChartComponent: React.FC<ChartProps> =({title, type, series, categories}) 
     const options = {
             chart: {
                 id: 'dynamic-chart',
-                type: type
+                type: type as 'line' | 'bar' | 'pie' //explicitly set type to line, bar or pie
             },
             xaxis: {
                 type: 'datetime' as const, //explicitly set type to datetime
