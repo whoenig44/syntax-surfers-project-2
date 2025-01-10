@@ -14,7 +14,7 @@ export default function Quotes() {
     }, []);
     return (
         <div>
-        <h1>Quotes</h1>
+        
         <p>"{quote.content}" &mdash; {quote.author}</p>
         </div>
     );
