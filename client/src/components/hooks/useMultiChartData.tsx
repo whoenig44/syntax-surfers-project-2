@@ -1,10 +1,15 @@
 import {useState} from 'react';
-import DataPoint from './useUserData'; //Update the link here. 
+
+interface DataPoint {
+    x: string;
+    y: number;
+}
+
 
 interface ChartData {
     id: number;
     title: string;
-    series: {name: string: data: DataPoint[] }[];
+    series: {name: string; data: DataPoint[] }[];
     categories: string[];
 }
 
@@ -23,8 +28,7 @@ const useMultiChartData = () => {
                 }
             ]);
             setChartId((prevId) => prevId + 1);
-        };
-    
+        };    
     
     
     const addDataPoint =(chartId: number, x: string, y: number) => {

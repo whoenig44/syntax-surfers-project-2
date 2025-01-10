@@ -14,10 +14,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 
-export default function ReactPortfolio(): JSX.Element {
+export default function HealthIsWealth(): JSX.Element {
   
   const [currentPage, setCurrentPage] = useState<'Home' | 'AddDataEntry' | 'RecordData' | 'ViewResultsDashboard' |
-  'ViewIndividualResults' | 'AddNewNotes' | 'ViewNotes' | 'About'>('Home');
+  'ViewIndividualResults' | 'AddNewNotes' | 'ViewNotes' | 'About'>('Home');//May need to update the pages here
 
   const renderPage = (): JSX.Element | null => {
     if (currentPage === 'Home') {

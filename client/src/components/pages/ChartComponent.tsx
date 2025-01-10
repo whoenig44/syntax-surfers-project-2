@@ -2,45 +2,51 @@
 import React from 'react';
 import Chart from 'react-apexcharts';
 
-//Creating the ChartComponent
+//Define the DataPoint interface
 interface DataPoint {
     x: string;
     y: number;
 }
-
+//Define ChartProps interface
 interface ChartProps {
     title: string;
+    type: 'bar' | 'line' | 'pie'; // Add more as needed
     series:{name: string; data: DataPoint[] } [];
     categories: string [];
 }
 
-const ChartComponent: React.FC<ChartProps> =({title, series, categories}) => {
-        const options = {
+//Creating the ChartComponent
+const ChartComponent: React.FC<ChartProps> =({title, type, series, categories}) => {
+    const options = {
             chart: {
-                id: 'apexchart-example',
-                type: 'area',
+                id: 'dynamic-chart',
+                type: type
             },
             xaxis: {
-                type: 'datetime', //Update to handle the datetime type for user input
-                categories: categories //Included for x-axis that is not datetime
+                type: 'datetime' as const, //explicitly set type to datetime
+               labels: {
+                format: 'MM-dd-yyyy' //Customise the data format if we want it changed. 
+               },
+               categories: categories //Ensure categories reflects the x-axis dates
             },
             yaxis: {
                 title: {
                     text: 'Values' //Customise the y-axis title to be based on user input!
                 },
                 min: 0, //Sets the minimum value for the y-axis
-                labels:{
+                labels: {
                     formatter: (value: number) => value.toFixed(0),
-                },
-            },
-            
+                }
+             },
+            title: {
+                text: title //set the title of the chart
+            }
         };
 
         return (
             <div className="chart-container">
                 <h2>{title}</h2>
-                <Chart options={options} series={series} type="area" width={500}
-            />
+                <Chart options={options} series={series} type={type} width={500}/>
             </div>
         );
     };
