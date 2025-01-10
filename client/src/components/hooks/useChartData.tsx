@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import {fetchChartData, ChartData} from '../api/fetchChartData';
+import {fetchChartData, ChartData} from '../../api/fetchChartData';
 
 export const useChartData = () => {
     const [chartData, setChartData] = useState<ChartData | null>(null);
