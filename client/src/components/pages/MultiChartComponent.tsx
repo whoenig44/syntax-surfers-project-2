@@ -1,7 +1,7 @@
 import React from 'react';
-import InputForm, { InputFormProps } from './inputForm';
-import ChartComponent from './ChartComponent';
-// import {DataPoint} from './hooks/useUserData'; //Updates with the multichart component
+import InputForm from './inputForm';
+//import ChartComponent from './ChartComponent';
+//import {DataPoint} from './hooks/useUserData'; Updates with the multichart component
 import useMultiChartData from '../hooks/useMultiChartData';
 
 const MultiChartComponent: React.FC = () => {
@@ -12,9 +12,9 @@ const MultiChartComponent: React.FC = () => {
             <button onClick={addNewChart}>Track New Item</button>
             {charts.map((chart) => (
                 <div key={chart.id}>
-                    <h2>{chart.title}</h2>
-                    <InputForm addDataPoint={(x, y) => addDataPoint(chart.id, x, y)} />
-                    <ChartComponent
+                    <h2>{}chart.title</h2>
+                    <InputForm add DataPoint={(x,y) => addDataPoint(chart.id, x, y)} />
+                    <MultiChartComponent
                      title={chart.title}
                      series={chart.series}
                      categories={chart.categories}
