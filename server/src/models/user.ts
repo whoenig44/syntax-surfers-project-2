@@ -1,5 +1,6 @@
 import { DataTypes, Sequelize, Model, Optional } from 'sequelize';
 import bcrypt from 'bcrypt';
+import {Note} from './note.js';
 
 // Define the attributes for the User model
 interface UserAttributes {
@@ -27,6 +28,10 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
     const saltRounds = 10;
     this.password = await bcrypt.hash(password, saltRounds);
   }
+  public static associate() {
+    this.hasMany(Note, { foreignKey: 'authorID', as: 'notes' });
+  }
+
 }
 
 // Define the UserFactory function to initialize the User model
