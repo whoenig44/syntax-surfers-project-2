@@ -5,16 +5,18 @@ import { Note } from '../../models/index.js';
 const router = express.Router();
 
 // GET /users - Get all users
-// router.get('/', async (_req: Request, res: Response) => {
-//   try {
-//     const users = await User.findAll({
-//       attributes: { exclude: ['password'] }
-//     });
-//     res.json(users);
-//   } catch (error: any) {
-//     res.status(500).json({ message: error.message });
-//   }
-// });
+router.get('/', async (req: Request, res: Response) => {
+  try {
+    const notes = await Note.findAll({
+      //@ts-ignore
+      where: {authorID: req?.user?.id},
+      
+    });
+    res.json(notes);
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 // // GET /users/:id - Get a user by id
 // router.get('/:id', async (req: Request, res: Response) => {
@@ -36,8 +38,10 @@ const router = express.Router();
 // POST /users - Create a new user
 router.post('/', async (req: Request, res: Response) => {
   const { title, date, message } = req.body;
+  console.log(req.user)
   try {
-    const newNote = await Note.create({ title, date, message, authorID: 1 });
+    // @ts-ignore
+    const newNote = await Note.create({ title, date, message, authorID: parseInt(req?.user?.id)  });
 
     res.status(201).json(newNote);
   } catch (error: any) {

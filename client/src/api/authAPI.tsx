@@ -22,7 +22,7 @@ const login = async (userInfo: UserLogin) => {
     const data = await response.json();
 
     // Save the token in localStorage or a suitable storage location 
-    localStorage.setItem('token', data.token);
+    // localStorage.setItem('token', data.token);
 
     return data;  // Return the data received from the server
   } catch (err) {

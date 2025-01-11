@@ -25,7 +25,9 @@
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.11.5",
-    "sequelize": "^6.37.3"
+    "sequelize": "^6.37.3",
+    "cors": "^2.8.5",
+    "@types/sequelize": "^4.28.20"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",

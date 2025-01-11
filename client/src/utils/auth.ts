@@ -3,13 +3,14 @@ class AuthService {
   // Check if the user is logged in by retrieving the token from localStorage
   loggedIn() {
     const token = this.getToken();
-    this.isTokenExpired()
-    return token;
+    const tokenExpired = this.isTokenExpired()
+    console.log(token, tokenExpired)
+    return token && !tokenExpired;
   }
 
   isTokenExpired() {
     // TODO: return a value that indicates if the token is expired
-    const savedAuth = localStorage.getItem("auth")
+    const savedAuth = localStorage.getItem("id_token")
     let tokenExpired=true
     if (savedAuth) {
       const tokenPayload = JSON.parse(window.atob(savedAuth.split(".")[1]))
@@ -18,9 +19,10 @@ class AuthService {
       tokenExpired=Math.floor(Date.now()/1000) > tokenPayload.exp
     }
     if (tokenExpired) {
-      localStorage.removeItem("auth")
-      // location.href="/login"
+      localStorage.removeItem("id_token")
+      
     }
+    return tokenExpired
   }
 
   // Retrieve the JWT token from localStorage
