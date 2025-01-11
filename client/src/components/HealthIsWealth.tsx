@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import AddDataEntry from './pages/AddDataEntry';
 import RecordData from './pages/RecordData';
 import ViewResultsDashboard from './pages/ViewResultsDashboard';
-import CombinedCharts from './pages/CombinedCharts'; // New combined charts page
+//import CombinedCharts from './pages/CombinedCharts'; // New combined charts page
 import ViewIndividualResults from './pages/ViewIndividualResults';
 import AddNewNotes from './pages/AddNewNotes';
 import ViewNotes from './pages/ViewNotes';
@@ -20,7 +20,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 export default function HealthIsWealth(): JSX.Element {
   type Page = 'Home' | 'AddDataEntry' | 'RecordData' | 'ViewResultsDashboard' |
-    'ViewIndividualResults' | 'AddNewNotes' | 'ViewNotes' | 'About' | 'CombinedCharts';
+    'ViewIndividualResults' | 'AddNewNotes' | 'ViewNotes' | 'About'  
   
   const [currentPage, setCurrentPage] = useState<Page>('Home');
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -62,7 +62,7 @@ export default function HealthIsWealth(): JSX.Element {
 
   const handlePageChange = (
     page: 'Home' | 'AddDataEntry' | 'RecordData' | 'ViewResultsDashboard' |
-      'ViewIndividualResults' | 'AddNewNotes' | 'ViewNotes' | 'About' | 'CombinedCharts'
+      'ViewIndividualResults' | 'AddNewNotes' | 'ViewNotes' | 'About' |
   ): void => {
     setCurrentPage(page);
   };
@@ -81,7 +81,7 @@ export default function HealthIsWealth(): JSX.Element {
           <Route path="/add-new-notes" element={<AddNewNotes />} />
           <Route path="/view-notes" element={<ViewNotes />} />
           <Route path="/about" element={<About />} />
-          <Route path="/combined-charts/:chartIds" element={<CombinedCharts />} />  
+          <Route path="/login" element={<Login />} />  
         </Routes>  
       </main>
       <Footer /> 
