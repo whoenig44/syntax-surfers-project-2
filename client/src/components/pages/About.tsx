@@ -29,7 +29,7 @@ export default function About() {
       <h3>Our Team</h3>
       <p>
         Our team is made up of four developers with a wide variety of backgrounds and skills who are passionate about creating 
-        apps that make your life easier. Sheila, Amy, Will, and Shannon have had a variety of job titles, including scientist, 
+        apps that make your life easier. Shelia, Amy, Will, and Shannon have had a variety of job titles, including scientist, 
         engineer, business owner, English teacher, Realtor, kick boxing instructor, stand up paddleboard yoga instructor, butterfly wrangler, and more. 
         We bring all of our unique experiences to the table to create apps that are useful and intuitive for a customer base that's 
         as diverse as we are.
