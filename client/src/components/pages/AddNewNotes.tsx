@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import './AddNewNotes.css';
 
 interface FormData {
   title: string;
@@ -49,12 +49,15 @@ const AddNewNotes: React.FC = () => {
   };
 
   return (
-    <div className="App">
-      <h1>Create a new note</h1>
+    <div>
+      <h1>Add New Notes</h1>
+      <p>
+        Add notes to record information about your symptoms.
+        </p>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div >
           <label htmlFor="title">Title:</label>
-          <input
+          <input className='note-title'
             type="text"
             id="title"
             name="title"
@@ -64,19 +67,20 @@ const AddNewNotes: React.FC = () => {
           />
         </div>
         <div>
-          <label htmlFor="date">Date:</label>
-          <input
-            type="date"
-            id="date"
-            name="date"
-            value={formData.date}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
+  <label htmlFor="date">Date:</label>
+  <input
+    className="date-input"
+    type="date"
+    id="date"
+    name="date"
+    value={formData.date}
+    onChange={handleChange}
+    required
+  />
+</div>
+        <div >
           <label htmlFor="message">Note:</label>
-          <textarea
+          <textarea className='note-message'
             id="message"
             name="message"
             value={formData.message}
@@ -87,7 +91,7 @@ const AddNewNotes: React.FC = () => {
         <button type="submit" className='button' >Submit</button>
       </form>
 
-      <div className="cards-container">
+      <div className="cards-container App">
         {cardsData.map((card, index) => (
           <div className="card" key={index}>
             <h2>{card.title}</h2>
