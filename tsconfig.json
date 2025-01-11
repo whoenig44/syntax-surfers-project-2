@@ -34,7 +34,7 @@
     "rootDir": "src", /* Specify the root folder within your source files */ 
     "typeRoots": ["./node_modules/@types", "./src/types"] /* Specify the type roots */ 
   },
-  "include": ["server/src"], /* Include your source files */ 
+  "include": ["src"], /* Include your source files */ 
   "exclude": ["node_modules"]
 }
 
