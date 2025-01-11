@@ -1,5 +1,5 @@
 import "./footer.css";
-import "../assets/smanticsurferimage.jpg"
+import logo from "../assets/smanticsurferimage.jpg"
 
 const Footer: React.FC = () => {
 
@@ -10,25 +10,18 @@ const Footer: React.FC = () => {
                     <div className="column">
                         <h3>Contributors</h3>
                         <ul>
-                            <li>Shelia Bradford</li>
-                            <li>Amy Griffith</li>
-                            <li>William Hoenig</li>
-                            <li>Shannon Taylor</li>
+                            <li><a href="https://github.com/SBradford4">Shelia Bradford</a></li>
+                            <li><a href="https://github.com/AmySuperCoder">Amy Griffith</a></li>
+                            <li><a href="https://github.com/whoenig44">William Hoenig</a></li>
+                            <li><a href="https://github.com/ShannonJTaylor">Shannon Taylor</a></li>
                         </ul>
                     </div>
-                    <div className="column">
-                        <h3>Contact us</h3>
-                        <ul>
-                            <li><a href="mailto:test@email.com">test@email.com</a></li>
-                            <li><a href="tel:+123456789">+123456789</a></li>
-                        </ul>
-                    </div>
-                    <div className="column">
-                        <img src="../assets/smanticsurferimage.jpg" alt="Semantic Surfer" />
+                    <div className="column logo-container">
+                        <img className="logo" src={logo} alt="Semantic Surfer Logo" />
                     </div>
                 </div>
                 <div className="copyright">
-                    <p>&copy; {(new Date().getFullYear())}, All rights reserved</p>
+                    <p>&copy; {(new Date().getFullYear())} All rights reserved</p>
                 </div>
             </div>
         </footer>
