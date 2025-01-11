@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ChartComponent from './ChartComponent';
 import useMultiChartData from '../hooks/useMultiChartData';
+import { ChartData } from './type';
 
 
 const CombinedCharts: React.FC = () => {
   const { combineChartData } = useMultiChartData();
-  const [combinedChart, setCombinedChart] = useState<ChartData | null>(null);
+  const [combinedChart, setCombinedChart] = useState<ChartData| null>(null);
   const { chartIds } = useParams<{ chartIds: string }>(); // Get chart IDs from URL parameters
 
   useEffect(() => {
