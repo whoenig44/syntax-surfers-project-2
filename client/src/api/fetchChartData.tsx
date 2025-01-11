@@ -1,14 +1,17 @@
+import { ChartData } from  '../components/pages/type';
+
+
 export interface SeriesData {
     name: string;
     data: {x: string; y: number }[];
 }
 
-export interface ChartData {
-    title: string;
-    type: 'bar' | 'line' | 'pie'; //Add more as needed
-    series: SeriesData[];
-    categories: string[];
-}
+// export interface ChartData {
+//     title: string;
+//     type: 'bar' | 'line' | 'pie'; //Add more as needed
+//     series: SeriesData[];
+//     categories: string[];
+// }
 
 // Function to fetch user-specific chart data 
 export const fetchChartData = async (token: string): Promise<ChartData[]> => { 
@@ -34,7 +37,8 @@ export const addDataPoint = async (token: string, chartId: number, x: string, y:
     try { 
         const response = await fetch('/api/charts/data-point', { 
             method: 'POST', 
-            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`, 
+            headers: { 'Content-Type': 'application/json', 
+                'Authorization': `Bearer ${token}`, 
         }, 
         body: JSON.stringify({ chartId, x, y }), 
     }); 

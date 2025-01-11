@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ChartComponent from './ChartComponent';
 import useMultiChartData from '../hooks/useMultiChartData';
-import { fetchChartData, ChartData } from '../../api/fetchChartData'; // Import fetchChartData and ChartData
+import { fetchChartData } from '../../api/fetchChartData'; // Import fetchChartData 
+import { ChartData } from './type'; // Import ChartData
 import Auth from '../../utils/auth'; // Import Auth
 
 const ViewResultsDashboard: React.FC = () => {
