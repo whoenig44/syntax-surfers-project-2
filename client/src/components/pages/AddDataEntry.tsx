@@ -2,13 +2,24 @@ import React from 'react';
 import InputForm from './inputForm';
 import ChartComponent from './ChartComponent';
 import useMultiChartData from '../hooks/useMultiChartData';
+import { addDataPoint } from '../../api/fetchChartData'; // Import the addDataPoint function 
+import Auth from '../../utils/auth';
 
 const AddDataEntry: React.FC = () => {
-    const {charts, addNewChart, addDataPoint } = useMultiChartData();
+    const {charts, addNewChart, addDataPoint: addLocalDataPoint } = useMultiChartData();
     const [selectedChartType, setSelectedChartType] = React.useState<'line' | 'bar' | 'pie'>('line'); //Default chart type is line
 
     const handleChartTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedChartType(e.target.value as 'line' | 'bar' | 'pie');
+    };
+     const handleAddDataPoint = async (chartId: number, x: string, y: number) => {
+        const token = Auth.getToken(); //get token from Auth
+        try {
+            await addDataPoint(token, chartId, x, y); //pass the token to the addDataPoint function
+            addLocalDataPoint(chartId, x, y); //Update local state
+        } catch (error) {
+            console.error('Failed to add data point:', error);
+        }
     };
 
     return (
@@ -28,7 +39,7 @@ const AddDataEntry: React.FC = () => {
             {charts.map((chart) => (
                 <div key={chart.id}>
                     <h2>{chart.title}</h2>
-                    <InputForm onSubmit={(x, y) => addDataPoint(chart.id, x, y)} />
+                    <InputForm onSubmit={(x, y) => handleAddDataPoint(chart.id, x, y)} />
                     <ChartComponent
                      type={selectedChartType} // Pass the chart type
                      title={chart.title}

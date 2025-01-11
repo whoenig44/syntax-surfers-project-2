@@ -1,6 +1,3 @@
-import Auth from '../utils/auth';
- 
-
 export interface SeriesData {
     name: string;
     data: {x: string; y: number }[];
@@ -26,16 +23,14 @@ export const fetchChartData = async (token: string): Promise<ChartData[]> => {
         } 
         const data = await response.json(); 
         return data; 
-    } 
-    catch (error) { 
+    } catch (error) { 
         console.error('Failed to fetch chart data:', error); 
         throw error; 
     } 
 };
 
 // Function to add a new data point to a user-specific chart 
-export const addDataPoint = async (chartId: number, x: string, y: number) => { 
-    const token = Auth.getToken(); 
+export const addDataPoint = async (token: string, chartId: number, x: string, y: number) => { 
     try { 
         const response = await fetch('/api/charts/data-point', { 
             method: 'POST', 

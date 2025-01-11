@@ -1,83 +1,198 @@
-import {useState} from 'react';
+import { useState, useEffect } from 'react';
+import { fetchChartData, addDataPoint as saveDataPoint } from '../../api/fetchChartData';
+import Auth from '../../utils/auth';
 
 interface DataPoint {
-    x: string;
-    y: number;
+  x: string;
+  y: number;
 }
 
-
 interface ChartData {
-    id: number;
-    title: string;
-    series: {name: string; data: DataPoint[] }[];
-    categories: string[];
+  id: number; 
+  title: string;
+  type: 'bar' | 'line' | 'pie'; // Add more as needed
+  series: { name: string; data: DataPoint[] }[];
+  categories: string[];
 }
 
 const useMultiChartData = () => {
-    const [charts, setCharts] = useState<ChartData[]>([]);
-    const [chartId, setChartId] = useState(1);
-        
-        const addNewChart = () => {
-            setCharts((prevCharts) => [
-                ...prevCharts,
-                {
-                    id: chartId,
-                    title: `chart ${chartId}`,
-                    series: [{name: 'User Data', data: [] }],
-                    categories: []
-                }
-            ]);
-            setChartId((prevId) => prevId + 1);
-        };    
-    
-    
-    const addDataPoint =(chartId: number, x: string, y: number) => {
-        setCharts((prevCharts) => 
-            prevCharts.map((chart) =>
-                chart.id === chartId
-                ? {
-                    ...chart,
-                    series: [
-                        {
-                            ...chart.series[0],
-                            data: [...chart.series[0].data,{x,y}]
-                        }
-                    ]
-                }
-                : chart
-            )
-        );
+  const [charts, setCharts] = useState<ChartData[]>([]);
+  const [chartId, setChartId] = useState(1);
+
+  useEffect(() => {
+    const fetchInitialData = async () => {
+      const token = Auth.getToken();
+      try {
+        const data = await fetchChartData(token);
+        setCharts(data);
+
+        // Ensure the chartId is set based on the last chart's id
+        if (data.length > 0) {
+          setChartId(data[data.length - 1].id + 1);
+        }
+      } catch (error) {
+        console.error('Error fetching initial data:', error);
+      }
     };
-    const combineChartData = (chartIds: number[]): ChartData => { 
-        const combinedSeries: { name: string; data: DataPoint[] }[] = []; 
-        const combinedCategories: Set<string> = new Set(); 
-        chartIds.forEach((id) => { 
-            const chart = charts.find((chart) => chart.id === id); 
-            if (chart) { 
-                chart.series.forEach((series, index) => { 
-                    if (!combinedSeries[index]) { combinedSeries[index] = { name: series.name, data: [] }; 
-                } 
-                combinedSeries[index].data.push(...series.data); 
-                series.data.forEach((dataPoint) => combinedCategories.add(dataPoint.x)); 
-            }); 
-        } 
+
+    fetchInitialData();
+  }, []);
+
+  const addNewChart = () => {
+    setCharts((prevCharts) => [
+      ...prevCharts,
+      {
+        id: chartId,
+        title: `Chart ${chartId}`,
+        type: 'line', // or any default type you prefer
+        series: [{ name: 'User Data', data: [] }],
+        categories: []
+      }
+    ]);
+    setChartId((prevId) => prevId + 1);
+  };
+
+  const addDataPoint = async (chartId: number, x: string, y: number) => {
+    setCharts((prevCharts) =>
+      prevCharts.map((chart) =>
+        chart.id === chartId
+          ? {
+              ...chart,
+              series: [
+                {
+                  ...chart.series[0],
+                  data: [...chart.series[0].data, { x, y }]
+                }
+              ]
+            }
+          : chart
+      )
+    );
+
+    const token = Auth.getToken();
+    try {
+      await saveDataPoint(token, chartId, x, y);
+    } catch (error) {
+      console.error('Error saving data point:', error);
+    }
+  };
+
+  const combineChartData = (chartIds: number[]): ChartData => { 
+    const combinedSeries: { name: string; data: DataPoint[] }[] = []; 
+    const combinedCategories: Set<string> = new Set(); 
+    chartIds.forEach((id) => { 
+      const chart = charts.find((chart) => chart.id === id); 
+      if (chart) { 
+        chart.series.forEach((series, index) => { 
+          if (!combinedSeries[index]) { combinedSeries[index] = { name: series.name, data: [] }; 
+          } 
+          combinedSeries[index].data.push(...series.data); 
+          series.data.forEach((dataPoint) => combinedCategories.add(dataPoint.x)); 
+        }); 
+      } 
     }); 
     return { 
-        id: chartId, 
-        title: 'Combined Chart', 
-        series: combinedSeries, 
-        categories: Array.from(combinedCategories).sort(), };
-     };
-
-    return {
-        charts,
-        addNewChart,
-        addDataPoint,
-        combineChartData,
+      id: chartId, 
+      title: 'Combined Chart', 
+      type: 'line',
+      series: combinedSeries, 
+      categories: Array.from(combinedCategories).sort(), 
     };
+  };
+
+  return {
+    charts,
+    addNewChart,
+    addDataPoint,
+    combineChartData,
+  };
 };
 
 export default useMultiChartData;
+
+
+
+
+// import {useState} from 'react';
+
+// interface DataPoint {
+//     x: string;
+//     y: number;
+// }
+
+
+// interface ChartData {
+//     id: number;
+//     title: string;
+//     series: {name: string; data: DataPoint[] }[];
+//     categories: string[];
+// }
+
+// const useMultiChartData = () => {
+//     const [charts, setCharts] = useState<ChartData[]>([]);
+//     const [chartId, setChartId] = useState(1);
+        
+//         const addNewChart = () => {
+//             setCharts((prevCharts) => [
+//                 ...prevCharts,
+//                 {
+//                     id: chartId,
+//                     title: `chart ${chartId}`,
+//                     series: [{name: 'User Data', data: [] }],
+//                     categories: []
+//                 }
+//             ]);
+//             setChartId((prevId) => prevId + 1);
+//         };    
+    
+    
+//     const addDataPoint =(chartId: number, x: string, y: number) => {
+//         setCharts((prevCharts) => 
+//             prevCharts.map((chart) =>
+//                 chart.id === chartId
+//                 ? {
+//                     ...chart,
+//                     series: [
+//                         {
+//                             ...chart.series[0],
+//                             data: [...chart.series[0].data,{x,y}]
+//                         }
+//                     ]
+//                 }
+//                 : chart
+//             )
+//         );
+//     };
+//     const combineChartData = (chartIds: number[]): ChartData => { 
+//         const combinedSeries: { name: string; data: DataPoint[] }[] = []; 
+//         const combinedCategories: Set<string> = new Set(); 
+//         chartIds.forEach((id) => { 
+//             const chart = charts.find((chart) => chart.id === id); 
+//             if (chart) { 
+//                 chart.series.forEach((series, index) => { 
+//                     if (!combinedSeries[index]) { combinedSeries[index] = { name: series.name, data: [] }; 
+//                 } 
+//                 combinedSeries[index].data.push(...series.data); 
+//                 series.data.forEach((dataPoint) => combinedCategories.add(dataPoint.x)); 
+//             }); 
+//         } 
+//     }); 
+//     return { 
+//         id: chartId, 
+//         title: 'Combined Chart', 
+//         series: combinedSeries, 
+//         categories: Array.from(combinedCategories).sort(), };
+//      };
+
+//     return {
+//         charts,
+//         addNewChart,
+//         addDataPoint,
+//         combineChartData,
+//     };
+// };
+
+// export default useMultiChartData;
 
 
 
