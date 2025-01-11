@@ -14,3 +14,5 @@ export const useChartData = () => {
 
     return chartData;
 };
+
+export default useChartData;

@@ -48,10 +48,32 @@ const useMultiChartData = () => {
             )
         );
     };
+    const combineChartData = (chartIds: number[]): ChartData => { 
+        const combinedSeries: { name: string; data: DataPoint[] }[] = []; 
+        const combinedCategories: Set<string> = new Set(); 
+        chartIds.forEach((id) => { 
+            const chart = charts.find((chart) => chart.id === id); 
+            if (chart) { 
+                chart.series.forEach((series, index) => { 
+                    if (!combinedSeries[index]) { combinedSeries[index] = { name: series.name, data: [] }; 
+                } 
+                combinedSeries[index].data.push(...series.data); 
+                series.data.forEach((dataPoint) => combinedCategories.add(dataPoint.x)); 
+            }); 
+        } 
+    }); 
+    return { 
+        id: chartId, 
+        title: 'Combined Chart', 
+        series: combinedSeries, 
+        categories: Array.from(combinedCategories).sort(), };
+     };
+
     return {
         charts,
         addNewChart,
-        addDataPoint
+        addDataPoint,
+        combineChartData,
     };
 };
 

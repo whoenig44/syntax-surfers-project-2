@@ -1,7 +1,6 @@
 import React from 'react';
 import InputForm from './inputForm';
 import ChartComponent from './ChartComponent';
-// import {DataPoint} from './hooks/useUserData'; //Updates with the multichart component
 import useMultiChartData from '../hooks/useMultiChartData';
 
 const AddDataEntry: React.FC = () => {
