@@ -21,6 +21,9 @@ const login = async (userInfo: UserLogin) => {
     // Parse the response body as JSON
     const data = await response.json();
 
+    // Save the token in localStorage or a suitable storage location 
+    localStorage.setItem('token', data.token);
+
     return data;  // Return the data received from the server
   } catch (err) {
     console.log('Error from user login: ', err);  // Log any errors that occur during fetch

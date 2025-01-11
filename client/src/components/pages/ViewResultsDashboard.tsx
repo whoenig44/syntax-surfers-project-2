@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ChartComponent from './ChartComponent';
 import useMultiChartData from '../hooks/useMultiChartData';
 import { fetchChartData, ChartData } from '../../api/fetchChartData'; // Import fetchChartData and ChartData
+import Auth from '../../utils/auth'; // Import Auth
 
 const ViewResultsDashboard: React.FC = () => {
   const { charts, combineChartData } = useMultiChartData();
@@ -12,8 +13,9 @@ const ViewResultsDashboard: React.FC = () => {
   useEffect(() => {
     const loadChartData = async () => {
       try {
-        const data = await fetchChartData(); // Fetch chart data
-        setFetchedCharts([data]); // Assuming you get an array of chart data
+        const token = Auth.getToken(); // Get token from Auth
+        const data = await fetchChartData(token); // Fetch chart data
+        setFetchedCharts(data); // Assuming you get an array of chart data
       } catch (error) {
         console.error('Failed to fetch chart data:', error);
       }

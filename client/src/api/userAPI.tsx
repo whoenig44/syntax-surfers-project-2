@@ -1,5 +1,6 @@
 import Auth from '../utils/auth';
 
+//Funtion to retrieve all users 
 const retrieveUsers = async () => {
   try {
     const response = await fetch('/api/users', {
@@ -15,11 +16,11 @@ const retrieveUsers = async () => {
     }
 
     return data;
-
   } catch (err) { 
     console.log('Error from data retrieval:', err);
     return [];
   }
-}
+};
+
 
 export { retrieveUsers };
