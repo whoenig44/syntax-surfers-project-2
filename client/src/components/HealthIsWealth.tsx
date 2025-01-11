@@ -20,7 +20,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 export default function HealthIsWealth(): JSX.Element {
   type Page = 'Home' | 'AddDataEntry' | 'RecordData' | 'ViewResultsDashboard' |
-    'ViewIndividualResults' | 'AddNewNotes' | 'ViewNotes' | 'About'  
+    'ViewIndividualResults' | 'AddNewNotes' | 'ViewNotes' | 'About';  
   
   const [currentPage, setCurrentPage] = useState<Page>('Home');
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
