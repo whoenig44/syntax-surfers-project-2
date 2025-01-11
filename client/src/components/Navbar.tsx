@@ -24,7 +24,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, handlePageChange }) => {
       {/* Data Tracking Dropdown */}
       <li className="nav-item dropdown">
         <a
-          href="/datatracking"
+          href="/data-tracking"
           className="nav-link dropdown-toggle"
           data-bs-toggle="dropdown"
           role="button"
@@ -38,7 +38,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, handlePageChange }) => {
         <ul className="dropdown-menu">
           <li>
             <a
-              href="/adddataentry"
+              href="/add-data-entry"
               onClick={() => handlePageChange('AddDataEntry')}
               className={
                 currentPage === 'AddDataEntry' ? 'dropdown-item active' : 'dropdown-item'
@@ -49,7 +49,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, handlePageChange }) => {
           </li>
           <li>
             <a
-              href="/recorddata"
+              href="/record-data"
               onClick={() => handlePageChange('RecordData')}
               className={
                 currentPage === 'RecordData' ? 'dropdown-item active' : 'dropdown-item'
@@ -60,7 +60,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, handlePageChange }) => {
           </li>
           <li>
             <a
-              href="/viewresultsdashboard"
+              href="/view-results-dashboard"
               onClick={() => handlePageChange('ViewResultsDashboard')}
               className={
                 currentPage === 'ViewResultsDashboard'
@@ -73,7 +73,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, handlePageChange }) => {
           </li>
           <li>
             <a
-              href="/viewindividualresults"
+              href="/view-individual-results"
               onClick={() => handlePageChange('ViewIndividualResults')}
               className={
                 currentPage === 'ViewIndividualResults'

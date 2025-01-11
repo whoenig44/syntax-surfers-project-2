@@ -1,4 +1,5 @@
 import Navbar from './Navbar'
+
   type Page = "Home" | "AddDataEntry" | "RecordData" | "ViewResultsDashboard" | "ViewIndividualResults" | "AddNewNotes" | "ViewNotes" | "About";
   export default function Header({ currentPage, handlePageChange, isAuthenticated }: { currentPage: Page, isAuthenticated: boolean, handlePageChange: (page: Page) => void }) {
 const handleChangeAuth = () => {
@@ -16,7 +17,7 @@ const handleChangeAuth = () => {
       <div className='_Header'>
         <div className="_Header-title">
           <h1 style={{marginLeft:'40px', fontWeight: 'bold'}}>Health Is Wealth!</h1>
-          <button onClick = {handleChangeAuth}>{isAuthenticated ? "Log out" : "Log in"}</button>
+          <button className="button" onClick = {handleChangeAuth}>{isAuthenticated ? "Log out" : "Log in"}</button>
         </div>
         <Navbar currentPage={currentPage} handlePageChange={handlePageChange} />
       </div>
