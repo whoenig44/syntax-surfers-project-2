@@ -27,6 +27,14 @@ footer a {
     margin-bottom: 5px;
 }
 
+.logo {
+    height: 100px;
+}
+
+.logo-container {
+    margin-left: auto; /* This will push the logo to the right */
+}
+
 .copyright {
     text-align: center;
 }
