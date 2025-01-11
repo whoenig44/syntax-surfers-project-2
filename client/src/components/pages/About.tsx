@@ -1,3 +1,5 @@
+import "./About.css";
+
 export default function About() {
     return (
       <div>
@@ -7,14 +9,14 @@ export default function About() {
         of your life. We create applications that are user-friendly and intuitive and ultimately save you time so that you 
         have more time to focus on what's important to you.
         </p>
-        <h3>Health Is Wealth</h3>
+        <h3>Health Is Wealth!</h3>
         <p>
           Our latest app makes it easier for you to track whether certain behaviors are affecting your health. Because every 
           body is different, you choose the behaviors that you feel may be affecting you. This could be eating certain ingredients, 
           like gluten or dairy, or it could be other behaviors like exercising or getting at least 8 hours of sleep.
         </p>
         <p>
-          Once you decide what behaviors you want to track, Health Is Wealth provides a simple interface so that you can record whether 
+          Once you decide what behaviors you want to track, Health Is Wealth! provides a simple interface so that you can record whether 
           you engaged in that behavior each day. You also log how you feel each day, so that you can see if there is a correlation between 
           the behaviors you're tracking and how you feel.
         </p>
