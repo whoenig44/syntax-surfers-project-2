@@ -62,7 +62,7 @@ export default function HealthIsWealth(): JSX.Element {
 
   const handlePageChange = (
     page: 'Home' | 'AddDataEntry' | 'RecordData' | 'ViewResultsDashboard' |
-      'ViewIndividualResults' | 'AddNewNotes' | 'ViewNotes' | 'About' |
+      'ViewIndividualResults' | 'AddNewNotes' | 'ViewNotes' | 'About' 
   ): void => {
     setCurrentPage(page);
   };
