@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { fetchChartData, addDataPoint as saveDataPoint } from '../../api/fetchChartData';
-import {ChartData} from '../pages/type';
+import {ChartData, DataPoint} from '../pages/type';
 import Auth from '../../utils/auth';
 
-interface DataPoint {
-  x: string;
-  y: number;
-}
+// interface DataPoint {
+  // title: string;
+  // x: string;
+  // y: number;
+// }
 
 // interface ChartData {
 //   id: number; 
@@ -27,9 +28,9 @@ const useMultiChartData = () => {
         const data = await fetchChartData(token);
         setCharts(data);
 
-        // // Ensure the chartId is set based on the last chart's id
-        // if (data.length > 0) {
-        //   setChartId(data[data.length - 1].id + 1);
+        if (data.length >0) {
+          setChartId(data[data.length - 1].id + 1);
+        }        
         } catch (error) {
         console.error('Error fetching initial data:', error);
       }
@@ -61,7 +62,7 @@ const useMultiChartData = () => {
               series: [
                 {
                   ...chart.series[0],
-                  data: [...chart.series[0].data, { x, y }]
+                  data: [...chart.series[0].data, { x, y } as DataPoint]
                 }
               ]
             }

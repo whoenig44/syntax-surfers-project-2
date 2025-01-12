@@ -5,7 +5,6 @@ import Home from './pages/Home';
 import AddDataEntry from './pages/AddDataEntry';
 import RecordData from './pages/RecordData';
 import ViewResultsDashboard from './pages/ViewResultsDashboard';
-//import CombinedCharts from './pages/CombinedCharts'; // New combined charts page
 import ViewIndividualResults from './pages/ViewIndividualResults';
 import AddNewNotes from './pages/AddNewNotes';
 import ViewNotes from './pages/ViewNotes';
