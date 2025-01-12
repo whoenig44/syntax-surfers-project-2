@@ -91,7 +91,7 @@ const AddNewNotes: React.FC = () => {
         <button type="submit" className='button' >Submit</button>
       </form>
 
-      <div className="cards-container App">
+      <div className="cards-container">
         {cardsData.map((card, index) => (
           <div className="card" key={index}>
             <h2>{card.title}</h2>

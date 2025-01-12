@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import './AddNewNotes.css';
 
 const apiEndpoint = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001';
 
@@ -37,12 +38,12 @@ export default function ViewNotes() {
   }
     return (
       <div>
-        <h1>View Notes</h1>
-        <p>
-         This will be the page where users view the notes they have entered.
-        </p>
-        <div>
+        <h1>Note History</h1>
+       
+        <div className='cards-container'>
+          <div className='card'>
           {renderNotes()}
+          </div>
         </div>
       </div>
     );

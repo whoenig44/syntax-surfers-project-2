@@ -16,38 +16,40 @@ form div {
   }
   
   .note-title {
-    width: 100%; /* Full width for title */
-    max-width: 600px; /* Optional max width */
+    width: 100%; 
+    max-width: 600px; 
   }
   
   .note-message {
     width: 100%; /* Full width for message */
     max-width: 600px; /* Optional max width */
   }
-  
-  /* .button {
-    margin-top: 1rem; /* Adds space above the button */
-    padding: 0.5rem 1rem;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-  
-  .button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-  } */
 
   .date-input {
-    width: 150px; /* Adjust this value as needed for a smaller size */
+    width: 150px; 
     padding: 0.5rem;
-    box-sizing: border-box; /* Ensures padding doesn't affect width */
+    box-sizing: border-box; 
+    border: 20px;
   }
 
   .cards-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: left;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-top: 20px;
   }
   
+  .card {
+    flex: 1 1 200px; 
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  
+ 
