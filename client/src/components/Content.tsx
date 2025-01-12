@@ -13,7 +13,8 @@ import Login from './pages/Login';
 import Footer from './Footer';
 import Header from './Header';
 import Auth from '../utils/auth';
-
+import CreateTracker from './pages/CreateTracker';
+import ListTrackers from './pages/ListTrackers';
 
 export default function Content(): JSX.Element {
     type Page = 'Home' | 'AddDataEntry' | 'RecordData' | 'ViewResultsDashboard' |
@@ -60,7 +61,9 @@ export default function Content(): JSX.Element {
                   <Route path="/add-new-notes" element={<AddNewNotes />} />
                   <Route path="/view-notes" element={<ViewNotes />} />
                   <Route path="/about" element={<About />} />
-                  <Route path="/login" element={<Login />} />  
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/create-tracker" element={<CreateTracker />} />
+                  <Route path="/list-trackers" element={<ListTrackers />} />  
                 </Routes>  
               </main>
               <Footer /> 

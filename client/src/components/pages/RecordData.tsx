@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import InputForm from './inputForm';
+import InputForm from '../context/inputForm';
 import ChartComponent from './ChartComponent';
 import {useChartData} from '../context/ChartDataContext';
 

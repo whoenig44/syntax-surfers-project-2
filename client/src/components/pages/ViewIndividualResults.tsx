@@ -1,5 +1,5 @@
 import React from 'react';
-import InputForm from './inputForm'; // Adjust the path as needed
+import InputForm from '../context/inputForm'; // Adjust the path as needed
 import ChartComponent from './ChartComponent'; // Adjust the path as needed
 import useMultiChartData from '../hooks/useMultiChartData'; // Adjust the path as needed
 
