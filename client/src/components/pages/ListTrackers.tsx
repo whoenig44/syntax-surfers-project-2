@@ -1,12 +1,21 @@
 // src/pages/ListTrackers.tsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import InputForm from '../context/inputForm';
 import ChartComponent from './ChartComponent';
 import { useChartData } from '../context/ChartDataContext';
 
 const ListTrackers: React.FC = () => {
-  const { charts, addDataPoint } = useChartData();
+  const { charts, addDataPoint, fetchCharts } = useChartData(); // Ensure fetchCharts is destructured
+
+  useEffect(() => {
+    fetchCharts();
+  }, [fetchCharts]);
+
+  //Add console log to check fetched data
+  useEffect(() => {
+    console.log('Fetched Charts:', charts);
+  }, [charts]);
 
   const handleAddDataPoint = (chartId: number, x: string, y: number, title: string) => {
     addDataPoint(chartId, x, y, title);

@@ -18,7 +18,8 @@ export const fetchChartData = async (token: string): Promise<ChartData[]> => {
         if (!response.ok) { 
             throw new Error('Network response was not ok'); 
         } 
-        const data = await response.json(); 
+        const data = await response.json();
+        console.log('Data from API', data); 
         return data; 
     } catch (error) { 
         console.error('Failed to fetch chart data:', error); 

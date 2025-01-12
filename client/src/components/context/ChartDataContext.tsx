@@ -10,14 +10,14 @@ interface ChartDataContextProps {
   fetchCharts: () => void;
 }
 
-const ChartDataContext = createContext<ChartDataContextProps | undefined>(undefined);
+const ChartDataContext = createContext<ChartDataContextProps | undefined>(undefined); 
 
-export const useChartData = () => {
-  const context = useContext(ChartDataContext);
-  if (!context) {
-    throw new Error('useChartData must be used within a ChartDataProvider');
+export const useChartData = () => { 
+  const context = useContext(ChartDataContext); 
+  if (!context) { 
+    throw new Error('useChartData must be used within a ChartDataProvider'); 
   }
-  return context;
+  return context; 
 };
 
 export const ChartDataProvider: React.FC<ChartDataProviderProps> = ({ children }) => {
@@ -31,6 +31,7 @@ export const ChartDataProvider: React.FC<ChartDataProviderProps> = ({ children }
     const token = Auth.getToken();
     try {
       const data = await fetchChartData(token);
+      console.log('Fetched Data in Context', data);
       setCharts(data);
     } catch (error) {
       console.error('Failed to fetch charts:', error);
