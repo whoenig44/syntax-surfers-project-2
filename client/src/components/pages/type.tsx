@@ -12,4 +12,7 @@ export interface DataPoint {
     series: { name: string; data: DataPoint[] }[];
     categories: string[];
   }
-  
+
+  export interface ChartDataProviderProps {
+    children: React.ReactNode;
+  }
