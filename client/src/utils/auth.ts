@@ -20,6 +20,7 @@ class AuthService {
     }
     if (tokenExpired) {
       localStorage.removeItem("id_token")
+      window.location.assign('/login');// Redirect to login if the token is expired
       
     }
     return tokenExpired

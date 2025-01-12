@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import AddDataEntry from './pages/AddDataEntry';
@@ -21,22 +21,24 @@ export default function Content(): JSX.Element {
 
     const location = useLocation();
     console.log(location)
-  const [currentPage, setCurrentPage] = useState<Page>('Home');
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+    const navigate = useNavigate(); //hook for SPA navigation
+    const [currentPage, setCurrentPage] = useState<Page>('Home');
+    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
-  useEffect(() => {
-    const authStatus = Auth.loggedIn();
-    console.log(authStatus)
-    if (authStatus) {
-      setIsAuthenticated(true);
-    } else {
-      setIsAuthenticated(false);
-     if (location.pathname !== '/login') {
-      window.location.assign('/login');
-     }
-    }
-  }, []);
+    useEffect(() => {
+      const authStatus = Auth.loggedIn();
+      console.log(authStatus);
 
+      // Set authentication status based on the authStatus returned from Auth.loggedIn()
+      setIsAuthenticated(authStatus !== "" && authStatus !== false);
+
+      // If not authenticated, redirect to login page
+      if (authStatus === "" || authStatus === false) {
+          if (location.pathname !== '/login') {
+              navigate('/login'); // Redirect to login page if not authenticated
+          }
+      }
+  }, [location.pathname, navigate]); // Add location.pathname and navigate as dependencies
   
   const handlePageChange = (
       page: 'Home' | 'AddDataEntry' | 'RecordData' | 'ViewResultsDashboard' |
@@ -63,5 +65,5 @@ export default function Content(): JSX.Element {
               </main>
               <Footer /> 
         </>
-    )
+    );
 }
