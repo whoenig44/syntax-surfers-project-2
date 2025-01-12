@@ -7,15 +7,16 @@ const RecordData: React.FC = () => {
   const {charts, addDataPoint} = useChartData();
   const [chartTitle, setChartTitle] = useState('');
   const [showChart, setShowChart] = useState(false);
-  // const {title, x, y } = location.state || {title: '', x: '', y: 0 };
-  // const [recordedData, setrecordedData] = useState<{title: string, x: string, y: number} []>([{title, x, y}]);
-  // const [showChart, setShowChart] = useState(false); //set the initial state of the chart to hidden
+  
 
   // 
   
   const handleDataSubmit = (title: string, x: string, y: number) => {
+    console.log('Data submitted:', {title, x, y}); //debugging purposes
+
     const chart = charts.find((chart) => chart.title === title);
     if (chart) {
+      console.log('Chart found for title:', title, chart);//debugging purposes
       addDataPoint(chart.id, x, y, title);
     } else {
       console.error('Chart with the given title not found')
@@ -23,6 +24,8 @@ const RecordData: React.FC = () => {
     setChartTitle(title);
     setShowChart(true);
   };
+
+  console.log('Current charts state: ', charts); //debugging purposes
 
   return ( 
   <div> 

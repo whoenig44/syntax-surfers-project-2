@@ -53,8 +53,10 @@ export const ChartDataProvider: React.FC<ChartDataProviderProps> = ({ children }
   };
 
   const addDataPoint = (chartId: number, x: string, y: number, title: string) => {
-    setCharts((prevCharts) =>
-      prevCharts.map((chart) =>
+    console.log('Adding data point:', { chartId, x, y, title });
+    
+    setCharts((prevCharts) => {
+      const updatedCharts = prevCharts.map((chart) =>
         chart.id === chartId
           ? {
               ...chart,
@@ -64,12 +66,15 @@ export const ChartDataProvider: React.FC<ChartDataProviderProps> = ({ children }
                   data: [...chart.series[0].data, { x, y, title }],
                 },
               ],
-              categories: [...chart.categories, x], //// Ensure categories are updated
+              categories: Array.from(new Set([...chart.categories, x])), //Ensure categories are updated
             }
           : chart
-      )
-    );
-  };
+        );
+        
+        console.log('Updated charts:', updatedCharts);
+        return updatedCharts; // Return the updated state
+      });
+    };
 
   return (
     <ChartDataContext.Provider value={{ charts, addNewChart, addDataPoint }}>
