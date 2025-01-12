@@ -64,6 +64,7 @@ export const ChartDataProvider: React.FC<ChartDataProviderProps> = ({ children }
                   data: [...chart.series[0].data, { x, y, title }],
                 },
               ],
+              categories: [...chart.categories, x], //// Ensure categories are updated
             }
           : chart
       )

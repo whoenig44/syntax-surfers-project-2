@@ -1,40 +1,49 @@
 import React, {useState} from 'react';
-import { useLocation } from 'react-router-dom';
 import InputForm from './inputForm';
 import ChartComponent from './ChartComponent';
+import {useChartData} from '../context/ChartDataContext';
 
 const RecordData: React.FC = () => {
-  const location = useLocation();
-  const {title, x, y } = location.state || {title: '', x: '', y: 0 };
-  const [recordedData, setrecordedData] = useState<{title: string, x: string, y: number} []>([{title, x, y}]);
-  const [showChart, setShowChart] = useState(false); //set the initial state of the chart to hidden
+  const {charts, addDataPoint} = useChartData();
+  const [chartTitle, setChartTitle] = useState('');
+  const [showChart, setShowChart] = useState(false);
+  // const {title, x, y } = location.state || {title: '', x: '', y: 0 };
+  // const [recordedData, setrecordedData] = useState<{title: string, x: string, y: number} []>([{title, x, y}]);
+  // const [showChart, setShowChart] = useState(false); //set the initial state of the chart to hidden
 
+  // 
+  
   const handleDataSubmit = (title: string, x: string, y: number) => {
-    setrecordedData((prevData) => [...prevData, {title, x, y}]);
-    setShowChart(true); //Show chart after data is submitted
+    const chart = charts.find((chart) => chart.title === title);
+    if (chart) {
+      addDataPoint(chart.id, x, y, title);
+    } else {
+      console.error('Chart with the given title not found')
+    }
+    setChartTitle(title);
+    setShowChart(true);
   };
 
-  return (
-    <div>
-      <h1>Recorded Data Summary</h1>
-      <InputForm onSubmit={handleDataSubmit} />
-      {showChart && (
-      <ChartComponent
-        title={recordedData[0].title || 'Chart'}
-        type="line"
-        series={[{
-          name: recordedData[0]?.title || 'Data Series',
-          data: recordedData.map(data => ({ x: data.x, y: data.y }))
-        }]}
-        categories={recordedData.map(data => data.x)}
-        yAxisTitle={recordedData[0]?.title || 'Values'} //set the y-axis title to match chart title
-      />
-      )}
-    </div>
-  );
-};
-
-export default RecordData;
+  return ( 
+  <div> 
+    <h1>Recorded Data</h1> 
+    <InputForm onSubmit={handleDataSubmit} /> 
+    {showChart && ( 
+      <ChartComponent 
+      title={chartTitle || 'Default Chart'} 
+      type="line" 
+      series={[{ name: chartTitle || 'Data Series', 
+        data: charts.find((chart) => chart.title === chartTitle)?.series[0].data || [], 
+      }]} 
+      categories={charts.find((chart) => chart.title === chartTitle)?.categories || []} 
+      yAxisTitle={chartTitle || 'Values'} 
+      /> 
+    )} 
+    </div> 
+    ); 
+  }; 
+  
+  export default RecordData;
 
 
 
