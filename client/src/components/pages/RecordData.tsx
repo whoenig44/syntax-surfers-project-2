@@ -5,32 +5,31 @@ import ChartComponent from './ChartComponent';
 
 const RecordData: React.FC = () => {
   const location = useLocation();
-  const {title, x, y } = location.state || { x: '', y: 0 };
+  const {title, x, y } = location.state || {title: '', x: '', y: 0 };
   const [recordedData, setrecordedData] = useState<{title: string, x: string, y: number} []>([{title, x, y}]);
+  const [showChart, setShowChart] = useState(false); //set the initial state of the chart to hidden
 
   const handleDataSubmit = (title: string, x: string, y: number) => {
     setrecordedData((prevData) => [...prevData, {title, x, y}]);
+    setShowChart(true); //Show chart after data is submitted
   };
 
   return (
     <div>
-      <h1>Recorded Data</h1>
+      <h1>Recorded Data Summary</h1>
       <InputForm onSubmit={handleDataSubmit} />
-      <h2>Recorded Data</h2>
-      <ul>
-        {recordedData.map((data, index) => (
-          <li key={index}>X (Date): {data.x}, Y (Value): {data.y}</li>
-        ))}
-      </ul>
-      <ChartComponent 
-      title={recordedData[0]?.title || 'Chart'} 
-      type="line" // You can change this to 'bar' or 'pie' as needed 
-      series={[{ 
-        name: 'Data Series', 
-        data: recordedData.map(data => ({ x: data.x, y: data.y })) 
-      }]} 
-      categories={recordedData.map(data => data.x)}
+      {showChart && (
+      <ChartComponent
+        title={recordedData[0].title || 'Chart'}
+        type="line"
+        series={[{
+          name: recordedData[0]?.title || 'Data Series',
+          data: recordedData.map(data => ({ x: data.x, y: data.y }))
+        }]}
+        categories={recordedData.map(data => data.x)}
+        yAxisTitle={recordedData[0]?.title || 'Values'} //set the y-axis title to match chart title
       />
+      )}
     </div>
   );
 };
