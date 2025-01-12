@@ -28,7 +28,7 @@ export default function ViewNotes() {
   const renderNotes = () => {
     return notes.map((note: any) => {
       return (
-        <div key={note.id}>
+        <div key={note.id} className='card'>
           <h3>{note.title}</h3>
           <p>{note.message}</p>
           <p>{note.date}</p>
@@ -41,7 +41,7 @@ export default function ViewNotes() {
         <h1>Note History</h1>
        
         <div className='cards-container'>
-          <div className='card'>
+          <div>
           {renderNotes()}
           </div>
         </div>
