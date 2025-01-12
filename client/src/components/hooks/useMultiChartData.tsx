@@ -39,13 +39,13 @@ const useMultiChartData = () => {
     fetchInitialData();
   }, []);
 
-  const addNewChart = () => {
+  const addNewChart = (title: string, type: 'bar' | 'line' | 'pie' = 'line') => { // Default type is 'line') => {
     setCharts((prevCharts) => [
       ...prevCharts,
       {
         id: chartId,
-        title: `Chart ${chartId}`,
-        type: 'line', // or any default type you prefer
+        title: title || `${chartId}`,
+        type: type, 
         series: [{ name: 'User Data', data: [] }],
         categories: []
       }
@@ -53,7 +53,7 @@ const useMultiChartData = () => {
     setChartId((prevId) => prevId + 1);
   };
 
-  const addDataPoint = async (chartId: number, x: string, y: number) => {
+  const addDataPoint = async (chartId: number, x: string, y: number, title: string) => {
     setCharts((prevCharts) =>
       prevCharts.map((chart) =>
         chart.id === chartId
@@ -62,7 +62,7 @@ const useMultiChartData = () => {
               series: [
                 {
                   ...chart.series[0],
-                  data: [...chart.series[0].data, { x, y } as DataPoint]
+                  data: [...chart.series[0].data, { x, y, title } as DataPoint]
                 }
               ]
             }
