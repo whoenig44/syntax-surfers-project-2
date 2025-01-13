@@ -101,7 +101,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, handlePageChange}) => {
           <li>
             <a
               href="/add-new-notes"
-              onClick={(e) => { e.preventDefault(); handlePageChange('AddNewNotes'); }}
+              
               className={
                 currentPage === 'AddNewNotes' ? 'dropdown-item active' : 'dropdown-item'
               }
@@ -112,7 +112,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, handlePageChange}) => {
           <li>
             <a
               href="/view-notes"
-              onClick={(e) => { e.preventDefault(); handlePageChange('ViewNotes'); }}
+              
               className={
                 currentPage === 'ViewNotes' ? 'dropdown-item active' : 'dropdown-item'
               }
