@@ -29,14 +29,14 @@ export const fetchChartData = async (token: string): Promise<ChartData[]> => {
 };
 
 // Function to add a new data point to a user-specific chart 
-export const addDataPoint = async (token: string, chartId: number, x: string, y: number) => { 
+export const addDataPoint = async (token: string, chartId: number, x: string, y: number, title: string) => { 
     try { 
         const response = await fetch(`${apiEndpoint}/api/charts/data-point`, { 
             method: 'POST', 
             headers: { 'Content-Type': 'application/json', 
                 'Authorization': `Bearer ${token}`, 
         }, 
-        body: JSON.stringify({ chartId, x, y }), 
+        body: JSON.stringify({ chartId, x, y, title }), 
     }); 
     if (!response.ok) { 
         throw new Error('Failed to add data point'); 

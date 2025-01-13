@@ -24,7 +24,7 @@ export const ChartDataProvider: React.FC<{ children: ReactNode }> = ({ children 
   const [charts, setCharts] = useState<ChartData[]>([]);
 
   useEffect(() => {
-    fetchCharts();
+    // fetchCharts();
   }, []);
 
   const fetchCharts = async () => {
@@ -52,7 +52,7 @@ export const ChartDataProvider: React.FC<{ children: ReactNode }> = ({ children 
   const addDataPoint = async (chartId: number, x: string, y: number, title: string) => {
     const token = Auth.getToken();
     try {
-      await apiAddDataPoint(token, chartId, x, y);
+      await apiAddDataPoint(token, chartId, x, y, title);
       setCharts((prevCharts) =>
         prevCharts.map((chart) =>
           chart.id === chartId

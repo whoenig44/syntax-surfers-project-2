@@ -28,6 +28,15 @@ export const fetchChartData = async (req: Request, res: Response) => {
 export const addDataPoint = async (req: Request, res: Response) => {
     const { chartId, title, x, y } = req.body;
     try {
+      await Chart.bulkCreate( [
+          {
+            username: 'JollyGuru',
+            title: 'Chart 1',
+            type: 'line',
+            createdAt: new Date(),
+            updatedAt: new Date()
+          }
+        ]);
         const newDataPoint = await DataPoint.create({chartId, title, x, y});
         res.status(200).json(newDataPoint);
     } catch (error) {

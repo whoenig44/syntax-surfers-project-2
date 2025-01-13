@@ -36,7 +36,7 @@ const ChartComponent: React.FC<ChartProps> =({title, type, series, categories, y
                 },
                 min: 0, //Sets the minimum value for the y-axis
                 labels: {
-                    formatter: (value: number) => value.toFixed(0),
+                    formatter: (value: number) => value?.toFixed(0),
                 }
              },
             title: {
