@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
+import AddDataEntry from './pages/AddDataEntry';    
 import RecordData from './pages/RecordData';
 import ViewResultsDashboard from './pages/ViewResultsDashboard';
 import ViewIndividualResults from './pages/ViewIndividualResults';
@@ -45,6 +46,7 @@ export default function Content(): JSX.Element {
             <main className="my-4">
                 <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/add-data-entry" element={<AddDataEntry />} />
                     <Route path="/record-data" element={<RecordData />} />
                     <Route path="/view-results-dashboard" element={<ViewResultsDashboard />} />
                     <Route path="/view-individual-results" element={<ViewIndividualResults />} />

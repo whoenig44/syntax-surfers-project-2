@@ -13,7 +13,7 @@ interface ChartAttributes {
 
 interface ChartCreationAttributes extends Optional<ChartAttributes, 'id'> {}
 
-class Chart extends Model<ChartAttributes, ChartCreationAttributes> implements ChartAttributes {
+export class Chart extends Model<ChartAttributes, ChartCreationAttributes> implements ChartAttributes {
   public id!: number;
   public username!: string;;
   public title!: string;

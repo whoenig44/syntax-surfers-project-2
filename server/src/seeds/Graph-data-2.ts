@@ -1,5 +1,6 @@
 import { QueryInterface } from 'sequelize';
 import { Op } from 'sequelize';
+import {Chart} from '../models/Chart.js';
 
 // Define the second set of seed data
 const seedData2 = {
@@ -51,6 +52,19 @@ const seedData2 = {
     });
   }
 };
+
+export const seedGraphs = async () => {
+  
+  await Chart.bulkCreate( [
+    {
+      username: 'JollyGuru',
+      title: 'Chart 1',
+      type: 'line',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+  ]);
+}
 
 export default seedData2;
 

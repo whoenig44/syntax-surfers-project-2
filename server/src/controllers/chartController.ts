@@ -19,6 +19,7 @@ export const fetchChartData = async (req: Request, res: Response) => {
         
         return res.json(charts);
       } catch (error) {
+        console.log(error)
         return res.status(500).json({ message: 'Server error' });
       }
 };
@@ -30,6 +31,7 @@ export const addDataPoint = async (req: Request, res: Response) => {
         const newDataPoint = await DataPoint.create({chartId, title, x, y});
         res.status(200).json(newDataPoint);
     } catch (error) {
+      console.log(error)
         res.status(500).json({ message: 'Server error' });
     }
 };
