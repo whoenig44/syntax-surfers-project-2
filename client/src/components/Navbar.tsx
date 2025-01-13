@@ -23,8 +23,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, handlePageChange }) => {
       </li>
       {/* Data Tracking Dropdown */}
       <li className="nav-item dropdown">
-        <a
-          href="/data-tracking"
+        <button
+         
           className="nav-link dropdown-toggle"
           data-bs-toggle="dropdown"
           role="button"
@@ -34,7 +34,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, handlePageChange }) => {
           }}
         >
           Data Tracking
-        </a>
+        </button>
         <ul className="dropdown-menu">
           <li>
             <a
@@ -89,8 +89,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, handlePageChange }) => {
       {/* Notes Dropdown */}
       <li className="nav-item dropdown">
         <a
-          href="/notes"
           
+          onClick={() => handlePageChange('AddNewNotes')}
           className="nav-link dropdown-toggle"
           data-bs-toggle="dropdown"
           role="button"
