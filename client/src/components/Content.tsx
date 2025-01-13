@@ -13,6 +13,7 @@ import Header from './Header';
 import Auth from '../utils/auth';
 import CreateTracker from './pages/CreateTracker';
 import ListTrackers from './pages/ListTrackers';
+import AddDataEntry from './pages/AddDataEntry';
 import { Page } from './pages/pageTypes'; // Import Page type
 
 export default function Content(): JSX.Element {
@@ -33,9 +34,7 @@ export default function Content(): JSX.Element {
         }
     }, [location.pathname, navigate]); // Add location.pathname and navigate as dependencies
   
-    const handlePageChange = (
-        page: Page
-    ): void => {
+    const handlePageChange = (page: Page): void => {
         setCurrentPage(page);
         navigate(`/${page.toLowerCase().replace(/ /g, '-')}`);
     };
