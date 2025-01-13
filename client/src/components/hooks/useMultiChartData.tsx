@@ -58,7 +58,7 @@ const useMultiChartData = () => {
 
     const token = Auth.getToken();
     try {
-      await saveDataPoint(token, chartId, x, y);
+      await saveDataPoint(token, chartId, x, y, title);
     } catch (error) {
       console.error('Error saving data point:', error);
     }
