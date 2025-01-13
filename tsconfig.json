@@ -2,7 +2,7 @@
   "compilerOptions": {
     /* Language and Environment */
     "target": "ES2020" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "outDir": "./dist",
 
     /* Modules */
@@ -36,6 +36,7 @@
   ],
   "exclude": [
     "node_modules",                               // Exclude the node_modules directory
-    "dist"                                        // Exclude the dist directory (compiled output)
+    "dist",
+    "server/dist"                                        // Exclude the dist directory (compiled output)
   ]
 }

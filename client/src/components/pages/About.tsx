@@ -1,6 +1,5 @@
 import "./About.css";
-// React is required for JSX
-import React from 'react';
+
 
 export default function About() {
     return (
