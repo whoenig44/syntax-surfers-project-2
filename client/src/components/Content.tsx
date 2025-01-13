@@ -1,5 +1,6 @@
+
 import { useState, useEffect } from 'react';
-import { useLocation, useNavigate, BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useLocation, useNavigate, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import RecordData from './pages/RecordData';
 import ViewResultsDashboard from './pages/ViewResultsDashboard';
@@ -13,7 +14,6 @@ import Header from './Header';
 import Auth from '../utils/auth';
 import CreateTracker from './pages/CreateTracker';
 import ListTrackers from './pages/ListTrackers';
-import AddDataEntry from './pages/AddDataEntry';
 import { Page } from './pages/pageTypes'; // Import Page type
 
 export default function Content(): JSX.Element {
@@ -54,6 +54,8 @@ export default function Content(): JSX.Element {
                     <Route path="/login" element={<Login />} />
                     <Route path="/create-tracker" element={<CreateTracker />} />
                     <Route path="/list-trackers" element={<ListTrackers />} />
+                   
+                    
                 </Routes>
             </main>
             <Footer />
