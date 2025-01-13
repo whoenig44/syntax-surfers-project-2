@@ -15,8 +15,8 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.static('../client/dist'));
 app.use(express.json());
-app.use(routes);
-app.use('../../routes/api/chartRoutes', chartRoutes); //New Chart Routes updated
+app.use(routes); //other routes if needed
+app.use('/api/charts', chartRoutes); //New Chart Routes updated
 
 sequelize.sync({force: forceDatabaseRefresh}).then(() => {
   app.listen(PORT, () => {
