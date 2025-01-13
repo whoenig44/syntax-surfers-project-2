@@ -1,16 +1,66 @@
 import React from 'react';
-import MultiChartComponent from './MultiChartComponent';
+import { useLocation } from 'react-router-dom';
+import { useChartData } from '../context/ChartDataContext';
+import InputForm from '../context/inputForm';  // Import InputForm
 
 const RecordData: React.FC = () => {
+  const location = useLocation();
+  const { newChartTitle, newChartType } = location.state || {}; // Receive chart title and type
+  const { charts, addDataPoint } = useChartData();
+
+  // Find the selected chart based on the title passed
+  const selectedChart = charts.find(chart => chart.title === newChartTitle);
+
+  // Handle submitting data to the chart
+  const handleAddDataPoint = (chartId: number, title: string, x: string, y: number) => {
+    if (selectedChart) {
+      addDataPoint(chartId, x, y, title); // Add the data point using the context's addDataPoint function
+    } else {
+      console.error('Chart not found.');
+    }
+  };
+
   return (
-    <div className="record-data">
+    <div>
       <h1>Record Data</h1>
-      <MultiChartComponent />
+      {newChartTitle && newChartType && (
+        <div>
+          <h2>Selected Chart</h2>
+          <p>Title: {newChartTitle}</p>
+          <p>Chart Type: {newChartType}</p>
+          
+          {selectedChart && (
+            <div>
+              <h3>Data for {selectedChart.title}</h3>
+              <InputForm
+                chartId={selectedChart.id}
+                onSubmit={handleAddDataPoint}  // Pass the handleAddDataPoint function
+                defaultTitle={selectedChart.title}  // Pre-fill title for this chart
+              />
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };
 
 export default RecordData;
+
+
+
+
+// const RecordData: React.FC = () => {
+//   return (
+//     <div className="record-data">
+//       <h1>Record Data</h1>
+//       <MultiChartComponent />
+//     </div>
+//   );
+// };
+// import React from 'react';
+
+// export default RecordData;
 
 
 // import React, {useState} from 'react';

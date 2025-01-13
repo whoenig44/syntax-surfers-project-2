@@ -3,20 +3,6 @@ import { fetchChartData, addDataPoint as saveDataPoint } from '../../api/fetchCh
 import {ChartData, DataPoint} from '../pages/type';
 import Auth from '../../utils/auth';
 
-// interface DataPoint {
-  // title: string;
-  // x: string;
-  // y: number;
-// }
-
-// interface ChartData {
-//   id: number; 
-//   title: string;
-//   type: 'bar' | 'line' | 'pie'; // Add more as needed
-//   series: { name: string; data: DataPoint[] }[];
-//   categories: string[];
-// }
-
 const useMultiChartData = () => {
   const [charts, setCharts] = useState<ChartData[]>([]);
   const [chartId, setChartId] = useState(1);
@@ -27,7 +13,7 @@ const useMultiChartData = () => {
       try {
         const data = await fetchChartData(token);
         setCharts(data);
-
+        //Update charId to ensure it starts fromt eh nex available ID
         if (data.length >0) {
           setChartId(data[data.length - 1].id + 1);
         }        
@@ -44,7 +30,7 @@ const useMultiChartData = () => {
       ...prevCharts,
       {
         id: chartId,
-        title: title || `${chartId}`,
+        title: title || `Chart #${chartId}`,
         type: type, 
         series: [{ name: 'User Data', data: [] }],
         categories: []
@@ -81,20 +67,27 @@ const useMultiChartData = () => {
   const combineChartData = (chartIds: number[]): ChartData => { 
     const combinedSeries: { name: string; data: DataPoint[] }[] = []; 
     const combinedCategories: Set<string> = new Set(); 
+    const combinedChartTitles: string [] = [];
+    
     chartIds.forEach((id) => { 
       const chart = charts.find((chart) => chart.id === id); 
       if (chart) { 
         chart.series.forEach((series, index) => { 
-          if (!combinedSeries[index]) { combinedSeries[index] = { name: series.name, data: [] }; 
+          if (!combinedSeries[index]) { 
+            combinedSeries[index] = { name: `Combined ${series.name}`, data: [] }; 
           } 
           combinedSeries[index].data.push(...series.data); 
           series.data.forEach((dataPoint) => combinedCategories.add(dataPoint.x)); 
         }); 
       } 
     }); 
+
+    //Increment chartID to ensure unique IDfor teh combined chart
+setChartId((prevId) => prevId + 1);
+
     return { 
       id: chartId, 
-      title: 'Combined Chart', 
+      title: `Combined ${combinedChartTitles.join(' ,  ')}`, 
       type: 'line',
       series: combinedSeries, 
       categories: Array.from(combinedCategories).sort(), 
