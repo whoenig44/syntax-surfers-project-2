@@ -13,10 +13,10 @@ const MultiChartComponent: React.FC = () => {
     setNewChartTitle('');
   };
 
-  const handleAddDataPoint = (title: string, x: string, y: number) => {
-    const chart = charts.find(c => c.title === title);
+  const handleAddDataPoint = (chartId: number, title: string, x: string, y: number) => {
+    const chart = charts.find(c => c.id === chartId);
     if (chart) {
-      addDataPoint(chart.id, x, y, title);
+      addDataPoint(chartId, x, y, title);
     } else {
       console.error('Chart with the given title not found');
     }
@@ -41,7 +41,11 @@ const MultiChartComponent: React.FC = () => {
       {charts.map((chart) => (
         <div key={chart.id}>
           <h2>{chart.title}</h2>
-          <InputForm onSubmit={(title, x, y) => handleAddDataPoint(title, x, y)} />
+          <InputForm 
+            chartId ={chart.id}
+            onSubmit={(chartId, title, x, y) => handleAddDataPoint(chartId, title, x, y)}
+            defaultTitle={chart.title} 
+          />
           {chart.series[0].data.length > 0 && (
             <ChartComponent
               title={chart.title}

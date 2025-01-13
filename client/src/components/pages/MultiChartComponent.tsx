@@ -19,8 +19,13 @@ const MultiChartComponent: React.FC = () => {
     }
   };
     
-  const handleAddDataPoint = (chartId: number, x: string, y: number, title: string) => {
-    addDataPoint(chartId, x, y, title);
+  const handleAddDataPoint = (chartId: number, title: string, x: string, y: number ) => {
+    const chart = charts.find((c) => c.id === chartId);
+    if (chart) {
+      addDataPoint(chart.id, x, y, title);
+    } else {
+      console.error('Chart with the given ID not found');
+    }    
   };
   return (
     <div>
@@ -43,7 +48,7 @@ const MultiChartComponent: React.FC = () => {
           <h2>{chart.title}</h2>
           <InputForm
             chartId={chart.id}
-            onSubmit={(x, y, title) => handleAddDataPoint(chart.id, title, x, y)}
+            onSubmit={(chartId, x, y, title) => handleAddDataPoint(chartId, y, x, title)}
             defaultTitle={chart.title}
           />
           {chart.series[0].data.length > 0 && (

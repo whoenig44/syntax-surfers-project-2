@@ -1,4 +1,6 @@
-// types.ts
+
+
+
 export interface DataPoint {
     title: string;  
     x: string;
