@@ -1,6 +1,6 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 import sequelize from '../config/connection';
-import Chart from './Chart';
+
 
 
 // Define the attributes for the DataPoint model
