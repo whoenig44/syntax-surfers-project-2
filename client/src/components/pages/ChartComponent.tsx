@@ -13,10 +13,11 @@ interface ChartProps {
     type: 'bar' | 'line' | 'pie'; // Add more as needed
     series:{name: string; data: DataPoint[] } [];
     categories: string [];
+    yAxisTitle?: string; //Optional prop for y-axis title
 }
 
 //Creating the ChartComponent
-const ChartComponent: React.FC<ChartProps> =({title, type, series, categories}) => {
+const ChartComponent: React.FC<ChartProps> =({title, type, series, categories, yAxisTitle})  => {
     const options = {
             chart: {
                 id: 'dynamic-chart',
@@ -25,17 +26,17 @@ const ChartComponent: React.FC<ChartProps> =({title, type, series, categories}) 
             xaxis: {
                 type: 'datetime' as const, //explicitly set type to datetime
                labels: {
-                format: 'MM-dd-yyyy' //Customise the data format if we want it changed. 
+                format: 'MM-dd-yyyy'//format the x-axis labels
                },
                categories: categories //Ensure categories reflects the x-axis dates
             },
             yaxis: {
                 title: {
-                    text: 'Values' //Customise the y-axis title to be based on user input!
+                    text: yAxisTitle ||'Values' //sets teh y-axis title to match chart title
                 },
                 min: 0, //Sets the minimum value for the y-axis
                 labels: {
-                    formatter: (value: number) => value.toFixed(0),
+                    formatter: (value: number) => value?.toFixed(0),
                 }
              },
             title: {

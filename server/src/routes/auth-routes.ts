@@ -46,25 +46,15 @@ export const login = async (req: Request, res: Response) => {
 
 export const checkAuth = async (_: Request, res: Response) => {
   // TODO: If the user exists and the password is correct, return a JWT token
-  try {
-    
-  //   const authToken = await jwt.sign({
-  //     user: {
-  //       id: user?.id
-  //     }
-  //   },
-  // process.env.JWT_SECRET_KEY!, 
-  // {expiresIn: "2m"}
-  // )
-  res.json({
-    success: true, 
-    // token: authToken
-  })
+  try { 
+    res.json({
+      success: true,     
+  });
   } catch (error) {
     console.log(error)
     res.json({
       success: false, 
-    })
+    });
   }
 };
 

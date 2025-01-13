@@ -1,5 +1,6 @@
 import "./footer.css";
 import logo from "../assets/smanticsurferimage.jpg"
+import React from "react";
 
 const Footer: React.FC = () => {
 

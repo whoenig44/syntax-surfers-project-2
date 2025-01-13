@@ -1,20 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchChartData, addDataPoint as saveDataPoint } from '../../api/fetchChartData';
-import {ChartData} from '../pages/type';
+import {ChartData, DataPoint} from '../pages/type';
 import Auth from '../../utils/auth';
-
-interface DataPoint {
-  x: string;
-  y: number;
-}
-
-// interface ChartData {
-//   id: number; 
-//   title: string;
-//   type: 'bar' | 'line' | 'pie'; // Add more as needed
-//   series: { name: string; data: DataPoint[] }[];
-//   categories: string[];
-// }
 
 const useMultiChartData = () => {
   const [charts, setCharts] = useState<ChartData[]>([]);
@@ -26,10 +13,10 @@ const useMultiChartData = () => {
       try {
         const data = await fetchChartData(token);
         setCharts(data);
-
-        // // Ensure the chartId is set based on the last chart's id
-        // if (data.length > 0) {
-        //   setChartId(data[data.length - 1].id + 1);
+        //Update charId to ensure it starts fromt eh nex available ID
+        if (data.length >0) {
+          setChartId(data[data.length - 1].id + 1);
+        }        
         } catch (error) {
         console.error('Error fetching initial data:', error);
       }
@@ -38,13 +25,13 @@ const useMultiChartData = () => {
     fetchInitialData();
   }, []);
 
-  const addNewChart = () => {
+  const addNewChart = (title: string, type: 'bar' | 'line' | 'pie' = 'line') => { // Default type is 'line') => {
     setCharts((prevCharts) => [
       ...prevCharts,
       {
         id: chartId,
-        title: `Chart ${chartId}`,
-        type: 'line', // or any default type you prefer
+        title: title || `Chart #${chartId}`,
+        type: type, 
         series: [{ name: 'User Data', data: [] }],
         categories: []
       }
@@ -52,7 +39,7 @@ const useMultiChartData = () => {
     setChartId((prevId) => prevId + 1);
   };
 
-  const addDataPoint = async (chartId: number, x: string, y: number) => {
+  const addDataPoint = async (chartId: number, x: string, y: number, title: string) => {
     setCharts((prevCharts) =>
       prevCharts.map((chart) =>
         chart.id === chartId
@@ -61,7 +48,7 @@ const useMultiChartData = () => {
               series: [
                 {
                   ...chart.series[0],
-                  data: [...chart.series[0].data, { x, y }]
+                  data: [...chart.series[0].data, { x, y, title } as DataPoint]
                 }
               ]
             }
@@ -80,20 +67,27 @@ const useMultiChartData = () => {
   const combineChartData = (chartIds: number[]): ChartData => { 
     const combinedSeries: { name: string; data: DataPoint[] }[] = []; 
     const combinedCategories: Set<string> = new Set(); 
+    const combinedChartTitles: string [] = [];
+    
     chartIds.forEach((id) => { 
       const chart = charts.find((chart) => chart.id === id); 
       if (chart) { 
         chart.series.forEach((series, index) => { 
-          if (!combinedSeries[index]) { combinedSeries[index] = { name: series.name, data: [] }; 
+          if (!combinedSeries[index]) { 
+            combinedSeries[index] = { name: `Combined ${series.name}`, data: [] }; 
           } 
           combinedSeries[index].data.push(...series.data); 
           series.data.forEach((dataPoint) => combinedCategories.add(dataPoint.x)); 
         }); 
       } 
     }); 
+
+    //Increment chartID to ensure unique IDfor teh combined chart
+setChartId((prevId) => prevId + 1);
+
     return { 
       id: chartId, 
-      title: 'Combined Chart', 
+      title: `Combined ${combinedChartTitles.join(' ,  ')}`, 
       type: 'line',
       series: combinedSeries, 
       categories: Array.from(combinedCategories).sort(), 

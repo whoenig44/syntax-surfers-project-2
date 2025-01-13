@@ -1,22 +1,28 @@
-import { DataTypes,  Model, Optional } from 'sequelize';
-import sequelize from '../config/connection';
+import { DataTypes, Model, Optional } from 'sequelize';
+import sequelize from '../config/connection.js';
+
 
 
 // Define the attributes for the DataPoint model
 interface DataPointAttributes {
   id: number;
+  chartId: number; //Add chartId attribute
+  title: string;
   x: Date;
   y: number;
   createdAt?: Date;
   updatedAt?: Date;
 }
 
-// Define the optional attributes for the DataPoint model
+
+//Define the optional attributes for the DataPoint model
 interface DataPointCreationAttributes extends Optional<DataPointAttributes, 'id'> {}
 
 class DataPoint extends Model<DataPointAttributes, DataPointCreationAttributes>
   implements DataPointAttributes {
   public id!: number;
+  public chartId!: number; // Add chartId attribute
+  public title!: string; // Include title
   public x!: Date;
   public y!: number;
 
@@ -32,6 +38,14 @@ DataPoint.init(
       type: DataTypes.INTEGER.UNSIGNED,
       autoIncrement: true,
       primaryKey: true
+    },
+    chartId: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false
+    },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false
     },
     x: {
       type: DataTypes.DATE,

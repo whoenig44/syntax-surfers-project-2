@@ -1,5 +1,8 @@
-// types.ts
+
+
+
 export interface DataPoint {
+    title: string;  
     x: string;
     y: number;
   }
@@ -11,4 +14,7 @@ export interface DataPoint {
     series: { name: string; data: DataPoint[] }[];
     categories: string[];
   }
-  
+
+  export interface ChartDataProviderProps {
+    children: React.ReactNode;
+  }

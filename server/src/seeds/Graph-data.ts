@@ -1,11 +1,6 @@
 import { QueryInterface } from 'sequelize';
 import { Op } from 'sequelize';
-//Op was suggested by copilot: When to Include Op we can always go bac to the original code:
-// Current Need: If your current up or down methods don't require complex query conditions, importing Op may not be necessary.
-// Future-Proofing: Including Op can be beneficial if you anticipate needing to perform more complex operations in the future.
-// By adding Op, your seed data file will be more flexible and ready for potential advanced operations.
 
-// Define the seed data
 const seedData = {
   up: async (queryInterface: QueryInterface): Promise<void> => {
     await queryInterface.bulkInsert('data_points', [

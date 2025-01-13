@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App'; // Automatically resolves to App.tsx
 
+
+
 //Added from Activity Example
 
 // Type the root element to ensure it's not null
