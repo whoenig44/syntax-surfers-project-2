@@ -9,9 +9,11 @@ export const login = async (req: Request, res: Response) => {
   const { username, password } = req.body;  // Extract username and password from request body
   console.log(username, password)
 
-  // Find the user in the database by username
+  try {
+    // Find the user in the database by username
   const user = await User.findOne({
     where: { username },
+    attributes: ['id', 'username', 'password'],
   });
 
   // If user is not found, send an authentication failed response
@@ -32,6 +34,14 @@ export const login = async (req: Request, res: Response) => {
   // Generate a JWT token for the authenticated user
   const token = jwt.sign({ username: user.username, id: user.id }, secretKey, { expiresIn: '1h' });
   return res.json({ token });  // Send the token as a JSON response
+  } catch (error) {
+    console.log(error)
+    return res.json({
+      success: false, 
+    })  
+  }
+
+  
 };
 
 export const checkAuth = async (_: Request, res: Response) => {

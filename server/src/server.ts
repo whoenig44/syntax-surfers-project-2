@@ -25,7 +25,7 @@ app.use(routes);
 app.get('*', (_req, res) => {
   res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
 });
-// app.use(express.static(path.join(__dirname, '../../client/dist')))
+app.use(express.static(path.join(__dirname, '../../client/dist')))
 
 sequelize.sync({force: forceDatabaseRefresh}).then(() => {
   app.listen(PORT, () => {
