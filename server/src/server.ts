@@ -6,7 +6,7 @@ dotenv.config();
 import express from 'express';
 import sequelize from './config/connection.js';
 import routes from './routes/index.js';
-import chartRoutes from './routes/chartRoutes.js';
+
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -17,7 +17,7 @@ app.use(cors());
 app.use(express.static('../client/dist'));
 app.use(express.json());
 app.use(routes); //imported from index.ts
-app.use('/api/charts', chartRoutes); //New Chart Routes updated
+
 
 sequelize.sync({force: forceDatabaseRefresh}).then(() => {
   app.listen(PORT, () => {

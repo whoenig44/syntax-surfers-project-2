@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './AddNewNotes.css';
+const apiEndpoint = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001';
 
 interface FormData {
   title: string;
@@ -30,7 +31,7 @@ const AddNewNotes: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch ('http://localhost:3001/api/notes', {
+      const res = await fetch (`${apiEndpoint}/api/notes`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

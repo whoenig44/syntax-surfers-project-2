@@ -1,4 +1,5 @@
 import { ChartData } from  '../components/pages/type';
+const apiEndpoint = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001';
 
 
 export interface SeriesData {
@@ -10,14 +11,14 @@ export interface SeriesData {
 // Function to fetch user-specific chart data 
 export const fetchChartData = async (token: string): Promise<ChartData[]> => { 
     try { 
-        const response = await fetch('/api/charts', { 
+        const response = await fetch(`${apiEndpoint}/api/charts`, { 
             headers: { 
                 'Authorization': `Bearer ${token}`, 
             }, 
         }); 
-        if (!response.ok) { 
-            throw new Error('Network response was not ok'); 
-        } 
+        // if (!response.ok) { 
+        //     throw new Error('Network response was not ok'); 
+        // } 
         const data = await response.json();
         console.log('Data from API', data); 
         return data; 
@@ -30,7 +31,7 @@ export const fetchChartData = async (token: string): Promise<ChartData[]> => {
 // Function to add a new data point to a user-specific chart 
 export const addDataPoint = async (token: string, chartId: number, x: string, y: number) => { 
     try { 
-        const response = await fetch('/api/charts/data-point', { 
+        const response = await fetch(`${apiEndpoint}/api/charts/data-point`, { 
             method: 'POST', 
             headers: { 'Content-Type': 'application/json', 
                 'Authorization': `Bearer ${token}`, 

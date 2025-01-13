@@ -1,6 +1,6 @@
 import { DataTypes, Model, Optional } from 'sequelize';
-import sequelize from '../config/connection';
-import DataPoint from './datapoints';
+import sequelize from '../config/connection.js';
+import DataPoint from './datapoints.js';
 
 interface ChartAttributes {
   id: number;

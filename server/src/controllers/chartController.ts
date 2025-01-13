@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import DataPoint from '../models/datapoints'; // Adjust the import to match your model path
-import Chart from '../models/Chart'// Adjust the import to match your model path
+import DataPoint from '../models/datapoints.js'; // Adjust the import to match your model path
+import Chart from '../models/Chart.js'// Adjust the import to match your model path
 
 
 // Fetch user-specific chart data
