@@ -1,5 +1,5 @@
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import AddDataEntry from './pages/AddDataEntry';
@@ -21,22 +21,23 @@ export default function Content(): JSX.Element {
     'ViewIndividualResults' | 'AddNewNotes' | 'ViewNotes' | 'About';  
 
     const location = useLocation();
+    const navigate = useNavigate();
     console.log(location)
   const [currentPage, setCurrentPage] = useState<Page>('Home');
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   useEffect(() => {
     const authStatus = Auth.loggedIn();
-    console.log(authStatus)
+    console.log(authStatus);
     if (authStatus) {
       setIsAuthenticated(true);
     } else {
       setIsAuthenticated(false);
-     if (location.pathname !== '/login') {
-      window.location.assign('/login');
-     }
+      if (location.pathname !== '/login') {
+        navigate('/login');
+      }
     }
-  }, []);
+  }, [navigate, location.pathname]);
 
   
   const handlePageChange = (
