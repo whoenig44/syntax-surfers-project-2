@@ -52,7 +52,7 @@ export const checkAuth = async (_: Request, res: Response) => {
 const router = Router();
 
 // POST /login - Login a user
-router.post('../login', login);  // Define the login route
+router.post('/login', login);  // Define the login route
 router.get('/checkAuth', authenticateToken, checkAuth)
 
 export default router;  // Export the router instance
