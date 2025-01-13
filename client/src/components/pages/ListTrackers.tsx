@@ -6,7 +6,7 @@ import ChartComponent from './ChartComponent';
 import { useChartData } from '../context/ChartDataContext';
 
 const ListTrackers: React.FC = () => {
-  const { charts, addDataPoint, fetchCharts } = useChartData(); // Ensure fetchCharts is destructured
+  const { charts, addDataPoint,fetchCharts } = useChartData(); // Ensure fetchCharts is destructured
 
   useEffect(() => {
     fetchCharts();
@@ -28,7 +28,11 @@ const ListTrackers: React.FC = () => {
       {charts.map((chart) => (
         <div key={chart.id}>
           <h2>{chart.title}</h2>
-          <InputForm onSubmit={(title, x, y) => handleAddDataPoint(chart.id, x, y, title)} />
+          <InputForm 
+            chartId={chart.id}
+            onSubmit={(y, x, title) => handleAddDataPoint(chart.id, x, y, title)}
+            defaultTitle={chart.title}
+            />
           <ChartComponent
             title={chart.title}
             type={chart.type}

@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Page } from './pages/pageTypes'; // Import Page type
 
 interface NavbarProps {
-  currentPage: 'Home' | 'AddDataEntry' | 'RecordData' | 'ViewResultsDashboard' |
-    'ViewIndividualResults' | 'AddNewNotes' | 'ViewNotes' | 'About';
-  handlePageChange: (page: 'Home' | 'AddDataEntry' | 'RecordData' | 'ViewResultsDashboard' |
-    'ViewIndividualResults' | 'AddNewNotes' | 'ViewNotes' | 'About') => void;
+  currentPage: Page;
+  handlePageChange: (page: Page) => void;
+  isAuthenticated: boolean;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ currentPage, handlePageChange }) => {
+const Navbar: React.FC<NavbarProps> = ({ currentPage, handlePageChange}) => {
   return (
     <ul className="nav nav-tabs">
       {/* Home */}
@@ -17,7 +17,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, handlePageChange }) => {
           href="/"
           onClick={(e) => { e.preventDefault(); handlePageChange('Home'); }}
           className={currentPage === 'Home' ? 'nav-link active' : 'nav-link'}
-          style={{color: 'black', border: '1px solid black'}}
+          style={{ color: 'black', border: '1px solid black' }}
         >
           Home
         </a>
@@ -30,7 +30,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, handlePageChange }) => {
           data-bs-toggle="dropdown"
           role="button"
           aria-expanded="false"
-          style={{color: 'black', border: '1px solid black'}}
+          style={{ color: 'black', border: '1px solid black' }}
         >
           Data Tracking
         </a>
@@ -93,7 +93,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, handlePageChange }) => {
           data-bs-toggle="dropdown"
           role="button"
           aria-expanded="false"
-          style={{color: 'black', border: '1px solid black'}}
+          style={{ color: 'black', border: '1px solid black' }}
         >
           Notes
         </a>
@@ -128,7 +128,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, handlePageChange }) => {
           href="/about"
           onClick={(e) => { e.preventDefault(); handlePageChange('About'); }}
           className={currentPage === 'About' ? 'nav-link active' : 'nav-link'}
-          style={{color: 'black', border: '1px solid black'}}
+          style={{ color: 'black', border: '1px solid black' }}
         >
           About
         </a>
@@ -278,17 +278,6 @@ export default Navbar;
 // };
 
 // export default Navbar;
-
-
-
-
-
-
-
-
-
-
-
 // import React from 'react';
 // interface NavbarProps {
 //   currentPage: 'Home' | 'AddDataEntry' | 'RecordData' | 'ViewResultsDashboard' |

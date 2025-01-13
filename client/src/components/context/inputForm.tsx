@@ -1,21 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface InputFormProps {
-  onSubmit: (title: string, x: string, y: number) => void;
+  onSubmit: (chartId: number, title: string, x: string, y: number) => void;
+  chartId: number; //add CharId to props
+  defaultTitle?: string; // Optional prop
 }
 
-const InputForm: React.FC<InputFormProps> = ({ onSubmit }) => {
-  const [title, setTitle] = useState('');
-  const [x, setX] = useState('');
-  const [y, setY] = useState('');
+const InputForm: React.FC<InputFormProps> = ({ onSubmit, chartId, defaultTitle }) => {
+  const [title, setTitle] = useState(defaultTitle || '');
+  const [x, setX] = useState<string>('');
+  const [y, setY] = useState<string | number>(''); // Initialize y as string for input handling
+
+  useEffect(() => {
+    setTitle(defaultTitle || '');
+  }, [defaultTitle]);
   
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(title, x, parseFloat(y));
-    setTitle('');
-    setX('');
-    setY('');
+    const yValue = parseFloat(y as string); //Convert y to number before submitting
+    if (!isNaN(yValue)) {
+      onSubmit(chartId, title, x, yValue);
+      setX('');
+      setY('');
+    } else {
+      console.error('Invalid value for y: ', y);
+    }
   };
 
   return (
@@ -23,7 +33,7 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit }) => {
       <div>
       <label>
           Title:
-          <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+          <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} readOnly={!!defaultTitle} />
         </label>
         <label>
           X (Date):
